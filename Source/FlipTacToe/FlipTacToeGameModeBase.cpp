@@ -31,15 +31,3 @@ void AFlipTacToeGameModeBase::SetPlayerRef()
 	}
 	PlayerPawnRef->Initialize();
 }
-
-void AFlipTacToeGameModeBase::ShowMainMenu()
-{
-}
-
-void AFlipTacToeGameModeBase::ShowPauseMenu()
-{
-}
-
-void AFlipTacToeGameModeBase::ShowHotseatMultiplayerOptions()
-{
-}

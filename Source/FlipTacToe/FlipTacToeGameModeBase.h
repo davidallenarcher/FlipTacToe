@@ -32,10 +32,10 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Setup")
 	void SetPlayerRef();
 
-	UFUNCTION(BlueprintCallable, Category = "Navigation")
-	virtual void ShowMainMenu();
-	UFUNCTION(BlueprintCallable, Category = "Navigation")
-	virtual void ShowPauseMenu();
-	UFUNCTION(BlueprintCallable, Category = "Navigation")
-	virtual void ShowHotseatMultiplayerOptions();
+	UFUNCTION(BlueprintImplementableEvent, Category = "Navigation")
+	void ShowMainMenu();
+	UFUNCTION(BlueprintImplementableEvent, Category = "Navigation")
+	void ShowPauseMenu();
+	UFUNCTION(BlueprintImplementableEvent, Category = "Navigation")
+	void ShowHotseatMultiplayerOptions();
 };
