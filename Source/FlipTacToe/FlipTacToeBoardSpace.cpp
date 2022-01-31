@@ -25,3 +25,9 @@ void AFlipTacToeBoardSpace::Tick(float DeltaTime)
 
 }
 
+AFlipTacToePiece* AFlipTacToeBoardSpace::getCurrentPiece()
+{
+	return CurrentPieceRef;
+}
+
+

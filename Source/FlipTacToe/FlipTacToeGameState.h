@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameFramework/GameStateBase.h"
+#include "GameFramework/GameState.h"
 #include "FlipTacToeBoard.h"
 #include "FlipTacToeGameState.generated.h"
 
@@ -15,7 +15,7 @@ class AFlipTacToePiece;
  * 
  */
 UCLASS()
-class FLIPTACTOE_API AFlipTacToeGameState : public AGameStateBase
+class FLIPTACTOE_API AFlipTacToeGameState : public AGameState
 {
 	GENERATED_BODY()
 protected:
@@ -24,18 +24,10 @@ public:
 	UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = "References")
 	AFlipTacToeBoard* BoardRef;
 	UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = "References")
-	TArray<AFlipTacToePiece*> PiecesRef;
-	UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = "References")
 	AFlipTacToePiece* SelectedPieceRef;
 public:
 	UFUNCTION(BlueprintCallable, Category = "Setup")
-	void Initialize();
-	UFUNCTION(BlueprintCallable, Category = "Setup")
-	void SetBoardRef();
-	UFUNCTION(BlueprintCallable, Category = "Setup")
-	void SetPiecesRef();
-	UFUNCTION(BlueprintCallable, Category = "Setup")
-	void ProcessPiece(AFlipTacToePiece* Piece);
+	AFlipTacToePiece* getCurrentPieceAt(FFlipTacToeCoordinate Coordinate);
 
 public:
 	UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = "References")

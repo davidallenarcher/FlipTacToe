@@ -3,29 +3,26 @@
 
 #include "FlipTacToePiece.h"
 
-// Sets default values
-AFlipTacToePiece::AFlipTacToePiece()
-{
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
-
-}
-
-// Called when the game starts or when spawned
-void AFlipTacToePiece::BeginPlay()
-{
-	Super::BeginPlay();
-	
-}
-
-// Called every frame
-void AFlipTacToePiece::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-
-}
-
-void AFlipTacToePiece::Initialize()
+AFlipTacToePiece::AFlipTacToePiece() 
 {
 }
 
+FlipTacToeFace AFlipTacToePiece::GetShownFace()
+{
+	return ShownFace;
+}
+
+void AFlipTacToePiece::SetShownFace(FlipTacToeFace NewFace)
+{
+	ShownFace = NewFace;
+}
+
+FlipTacToeFace AFlipTacToePiece::FlipFace()
+{
+	if (ShownFace == FlipTacToeFace::HEADS) {
+		SetShownFace(FlipTacToeFace::TAILS);
+	} else {
+		SetShownFace(FlipTacToeFace::HEADS);
+	}
+	return ShownFace;
+}

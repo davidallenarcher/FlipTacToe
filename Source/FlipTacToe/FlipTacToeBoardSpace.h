@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "FlipTacToeGameModeBase.h"
+#include "FlipTacToeGameMode.h"
 #include "FlipTacToePlayerController.h"
 #include "FlipTacToePiece.h"
 #include "Structs/FlipTacToeCoordinate.h"
@@ -28,6 +28,10 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 public:
+	UFUNCTION(BlueprintCallable, Category = "Setup")
+	AFlipTacToePiece* getCurrentPiece();
+
+public:
 	UPROPERTY( EditInstanceOnly, BlueprintReadWrite, Category="Setup" )
 	FFlipTacToeCoordinate Coordinate;
 
@@ -35,7 +39,7 @@ public:
 	AFlipTacToePlayerController* PlayerControllerRef;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "References")
-	AFlipTacToeGameModeBase* GameModeRef;
+	AFlipTacToeGameMode* GameModeRef;
 
 	UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = "References")
 	AFlipTacToePiece* CurrentPieceRef;

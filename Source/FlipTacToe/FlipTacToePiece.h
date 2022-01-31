@@ -4,25 +4,21 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "Enums/FlipTacToeFace.h"
 #include "FlipTacToePiece.generated.h"
 
 UCLASS()
 class FLIPTACTOE_API AFlipTacToePiece : public AActor
 {
 	GENERATED_BODY()
-	
 public:	
-	// Sets default values for this actor's properties
 	AFlipTacToePiece();
-
-protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
-
-public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
-
-	UFUNCTION(BlueprintCallable, Category = "Setup")
-	void Initialize();
+	UFUNCTION(BlueprintCallable, Category = "Gameplay")
+	FlipTacToeFace GetShownFace();
+	UFUNCTION(BlueprintCallable, Category = "Gameplay")
+	void SetShownFace(FlipTacToeFace NewFace);
+	UFUNCTION(BlueprintCallable, Category = "Gameplay")
+	FlipTacToeFace FlipFace();
+private:
+	FlipTacToeFace ShownFace;
 };

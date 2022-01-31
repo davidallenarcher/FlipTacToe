@@ -3,8 +3,8 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameFramework/GameModeBase.h"
-#include "FlipTacToeGameModeBase.generated.h"
+#include "GameFramework/GameMode.h"
+#include "FlipTacToeGameMode.generated.h"
 
 // Forward Declarations
 class AFlipTacToePlayerController;
@@ -14,7 +14,7 @@ class AFlipTacToePlayerPawn;
  * 
  */
 UCLASS()
-class FLIPTACTOE_API AFlipTacToeGameModeBase : public AGameModeBase
+class FLIPTACTOE_API AFlipTacToeGameMode : public AGameMode
 {
 	GENERATED_BODY()
 protected:

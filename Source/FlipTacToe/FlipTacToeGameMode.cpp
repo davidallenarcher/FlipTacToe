@@ -1,22 +1,22 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "FlipTacToeGameModeBase.h"
+#include "FlipTacToeGameMode.h"
 #include "FlipTacToePlayerController.h"
 #include "FlipTacToePlayerPawn.h"
 #include "Kismet/GameplayStatics.h"
 
-void AFlipTacToeGameModeBase::Initialize()
+void AFlipTacToeGameMode::Initialize()
 {
 	SetPlayerControllerRef();
 	SetPlayerRef();
 }
 
-void AFlipTacToeGameModeBase::BeginPlay() {
+void AFlipTacToeGameMode::BeginPlay() {
 	Initialize();
 }
 
-void AFlipTacToeGameModeBase::SetPlayerControllerRef()
+void AFlipTacToeGameMode::SetPlayerControllerRef()
 {
 	if (PlayerControllerRef == nullptr) {
 		PlayerControllerRef = (AFlipTacToePlayerController*)UGameplayStatics::GetPlayerController(this, 0);
@@ -24,10 +24,11 @@ void AFlipTacToeGameModeBase::SetPlayerControllerRef()
 	PlayerControllerRef->Initialize();
 }
 
-void AFlipTacToeGameModeBase::SetPlayerRef()
+void AFlipTacToeGameMode::SetPlayerRef()
 {
 	if (PlayerPawnRef == nullptr) {
 		PlayerPawnRef = (AFlipTacToePlayerPawn*)UGameplayStatics::GetPlayerPawn(this, 0);
 	}
 	PlayerPawnRef->Initialize();
 }
+

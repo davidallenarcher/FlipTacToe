@@ -26,7 +26,14 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 	UFUNCTION(BlueprintCallable, Category = "Setup")
+	AFlipTacToePiece* getCurrentPieceAt(FFlipTacToeCoordinate Coordinate);
+
+	UFUNCTION(BlueprintCallable, Category = "Setup")
 	void Initialize();
+
+private:
+	UFUNCTION()
+	AFlipTacToeBoardSpace* getSpaceAt(FFlipTacToeCoordinate Coordinate);
 
 public:
 	UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = "References")

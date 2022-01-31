@@ -25,7 +25,17 @@ void AFlipTacToeBoard::Tick(float DeltaTime)
 
 }
 
+AFlipTacToePiece* AFlipTacToeBoard::getCurrentPieceAt(FFlipTacToeCoordinate Coordinate)
+{
+	return getSpaceAt(Coordinate)->getCurrentPiece();
+}
+
 void AFlipTacToeBoard::Initialize()
 {
+}
+
+AFlipTacToeBoardSpace* AFlipTacToeBoard::getSpaceAt(FFlipTacToeCoordinate Coordinate)
+{
+	return SpacesRef[Coordinate.row * 4 + Coordinate.column];
 }
 

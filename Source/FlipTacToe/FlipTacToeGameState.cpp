@@ -7,40 +7,11 @@
 
 void AFlipTacToeGameState::BeginPlay()
 {
-	Initialize();
+
 }
 
-void AFlipTacToeGameState::Initialize()
+AFlipTacToePiece* AFlipTacToeGameState::getCurrentPieceAt(FFlipTacToeCoordinate Coordinate)
 {
-	SetBoardRef();
-	SetPiecesRef();
+	return BoardRef->getCurrentPieceAt(Coordinate);
 }
 
-void AFlipTacToeGameState::SetBoardRef()
-{
-	if (BoardRef == nullptr) {
-		TArray<AActor*> FoundActors;
-		UGameplayStatics::GetAllActorsOfClass(this, AFlipTacToeBoard::StaticClass(), FoundActors);
-		BoardRef = (AFlipTacToeBoard*)FoundActors[0];
-	}
-	if (BoardRef != nullptr) {
-		BoardRef->Initialize();
-	}
-}
-
-void AFlipTacToeGameState::SetPiecesRef()
-{
-	if (PiecesRef.Num() == 0) {
-		TArray<AActor*> FoundActors;
-		UGameplayStatics::GetAllActorsOfClass(this, AFlipTacToePiece::StaticClass(), FoundActors);
-		for (AActor* FoundActor : FoundActors) {
-			ProcessPiece((AFlipTacToePiece*)FoundActor);
-		}
-	}
-}
-
-void AFlipTacToeGameState::ProcessPiece(AFlipTacToePiece* Piece)
-{
-	AFlipTacToePiece* TempPiece = Piece;
-	TempPiece->Initialize();
-}
