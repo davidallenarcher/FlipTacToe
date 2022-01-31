@@ -5,6 +5,7 @@
 
 AFlipTacToePiece::AFlipTacToePiece() 
 {
+	PrimaryActorTick.bCanEverTick = false;
 }
 
 FlipTacToeFace AFlipTacToePiece::GetShownFace()

@@ -22,9 +22,9 @@ protected:
 	virtual void BeginPlay() override;
 public:
 	UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = "References")
-	AFlipTacToeBoard* BoardRef;
+	AFlipTacToeBoard* Board;
 	UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = "References")
-	AFlipTacToePiece* SelectedPieceRef;
+	AFlipTacToePiece* SelectedPiece;
 public:
 	UFUNCTION(BlueprintCallable, Category = "Setup")
 	AFlipTacToePiece* getCurrentPieceAt(FFlipTacToeCoordinate Coordinate);

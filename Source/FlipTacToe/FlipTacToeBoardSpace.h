@@ -15,32 +15,24 @@ class FLIPTACTOE_API AFlipTacToeBoardSpace : public AActor
 {
 	GENERATED_BODY()
 	
-public:	
-	// Sets default values for this actor's properties
+public:
 	AFlipTacToeBoardSpace();
 
-protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
-
-public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
-
 public:
-	UFUNCTION(BlueprintCallable, Category = "Setup")
-	AFlipTacToePiece* getCurrentPiece();
-
+	UFUNCTION(BlueprintCallable, Category = "Gameplay")
+	AFlipTacToePiece* GetCurrentPiece();
+	UFUNCTION(BlueprintCallable, Category = "Gameplay")
+	AFlipTacToePiece* RemovePiece();
+	UFUNCTION(BlueprintCallable, Category = "Gameplay")
+	bool IsEmpty();
+	UFUNCTION(BlueprintCallable, Category = "Gameplay")
+	bool SetCurrentPiece(AFlipTacToePiece* NewPiece);
+	
 public:
-	UPROPERTY( EditInstanceOnly, BlueprintReadWrite, Category="Setup" )
+	UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category="Gameplay", meta = (ExposeOnSpawn = "true"))
 	FFlipTacToeCoordinate Coordinate;
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "References")
-	AFlipTacToePlayerController* PlayerControllerRef;
-
-	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "References")
-	AFlipTacToeGameMode* GameModeRef;
-
+protected:
 	UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = "References")
-	AFlipTacToePiece* CurrentPieceRef;
+	AFlipTacToePiece* CurrentPiece;
 };

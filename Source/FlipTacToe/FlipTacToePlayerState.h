@@ -14,8 +14,6 @@ class FLIPTACTOE_API AFlipTacToePlayerState : public APlayerState
 {
 	GENERATED_BODY()
 public:
-	UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = "Preferences")
-	FLinearColor HeadsColor;
-	UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = "Preferences")
-	FLinearColor TailsColor;
+	//UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = "GamePlay")
+	
 };

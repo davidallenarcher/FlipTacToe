@@ -3,31 +3,36 @@
 
 #include "FlipTacToeBoardSpace.h"
 
-// Sets default values
 AFlipTacToeBoardSpace::AFlipTacToeBoardSpace()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
-
+	PrimaryActorTick.bCanEverTick = false;
 }
 
-// Called when the game starts or when spawned
-void AFlipTacToeBoardSpace::BeginPlay()
+AFlipTacToePiece* AFlipTacToeBoardSpace::GetCurrentPiece()
 {
-	Super::BeginPlay();
-	
+	return CurrentPiece;
 }
 
-// Called every frame
-void AFlipTacToeBoardSpace::Tick(float DeltaTime)
+AFlipTacToePiece* AFlipTacToeBoardSpace::RemovePiece()
 {
-	Super::Tick(DeltaTime);
-
+	AFlipTacToePiece* RemovedPiece = CurrentPiece;
+	CurrentPiece = nullptr;
+	return CurrentPiece;
 }
 
-AFlipTacToePiece* AFlipTacToeBoardSpace::getCurrentPiece()
+bool AFlipTacToeBoardSpace::IsEmpty() 
 {
-	return CurrentPieceRef;
+	return GetCurrentPiece() == nullptr;
+}
+
+bool AFlipTacToeBoardSpace::SetCurrentPiece(AFlipTacToePiece* NewPiece)
+{
+	bool result = false;
+	if (IsEmpty()) {
+		CurrentPiece = NewPiece;
+		result = true;
+	}
+	return result;
 }
 
 
