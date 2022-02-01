@@ -1,34 +1,26 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-
 #include "FlipTacToeGameMode.h"
 #include "FlipTacToePlayerController.h"
 #include "FlipTacToePlayerPawn.h"
 #include "Kismet/GameplayStatics.h"
 
-void AFlipTacToeGameMode::Initialize()
+AFlipTacToePiece* AFlipTacToeGameMode::getCurrentPieceAt(FFlipTacToeCoordinate Coordinate)
 {
-	SetPlayerControllerRef();
-	SetPlayerRef();
+	return FlipTacToeGameState->getCurrentPieceAt(Coordinate);
 }
 
-void AFlipTacToeGameMode::BeginPlay() {
-	Initialize();
-}
-
-void AFlipTacToeGameMode::SetPlayerControllerRef()
+AFlipTacToePiece* AFlipTacToeGameMode::RemovePieceAt(FFlipTacToeCoordinate Coordinate)
 {
-	if (PlayerControllerRef == nullptr) {
-		PlayerControllerRef = (AFlipTacToePlayerController*)UGameplayStatics::GetPlayerController(this, 0);
-	}
-	PlayerControllerRef->Initialize();
+	return FlipTacToeGameState->RemovePieceAt(Coordinate);
 }
 
-void AFlipTacToeGameMode::SetPlayerRef()
+bool AFlipTacToeGameMode::IsEmptyAt(FFlipTacToeCoordinate Coordinate)
 {
-	if (PlayerPawnRef == nullptr) {
-		PlayerPawnRef = (AFlipTacToePlayerPawn*)UGameplayStatics::GetPlayerPawn(this, 0);
-	}
-	PlayerPawnRef->Initialize();
+	return FlipTacToeGameState->IsEmptyAt(Coordinate);
 }
 
+bool AFlipTacToeGameMode::SetCurrentPieceAt(FFlipTacToeCoordinate Coordinate, AFlipTacToePiece* NewPiece)
+{
+	return FlipTacToeGameState->SetCurrentPieceAt(Coordinate, NewPiece);
+}

@@ -13,6 +13,21 @@ AFlipTacToePiece* AFlipTacToeBoard::getCurrentPieceAt(FFlipTacToeCoordinate Coor
 	return getSpaceAt(Coordinate)->GetCurrentPiece();
 }
 
+AFlipTacToePiece* AFlipTacToeBoard::RemovePieceAt(FFlipTacToeCoordinate Coordinate)
+{
+	return getSpaceAt(Coordinate)->RemovePiece();
+}
+
+bool AFlipTacToeBoard::IsEmptyAt(FFlipTacToeCoordinate Coordinate)
+{
+	return getSpaceAt(Coordinate)->IsEmpty();
+}
+
+bool AFlipTacToeBoard::SetCurrentPieceAt(FFlipTacToeCoordinate Coordinate, AFlipTacToePiece* NewPiece)
+{
+	return getSpaceAt(Coordinate)->SetCurrentPiece(NewPiece);
+}
+
 AFlipTacToeBoardSpace* AFlipTacToeBoard::getSpaceAt(FFlipTacToeCoordinate Coordinate)
 {
 	return Spaces[Coordinate.row * 4 + Coordinate.column];

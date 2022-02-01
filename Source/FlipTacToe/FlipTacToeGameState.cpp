@@ -13,7 +13,8 @@ void AFlipTacToeGameState::BeginPlay()
 
 	UGameplayStatics::GetAllActorsOfClass(GetWorld(), AFlipTacToeBoard::StaticClass(), Actors);
 
-	if (Actors.Num() > 0) {
+	if (Actors.Num() > 0) 
+	{
 		Board = (AFlipTacToeBoard*)Actors[0];
 	}
 }
@@ -22,4 +23,20 @@ AFlipTacToePiece* AFlipTacToeGameState::getCurrentPieceAt(FFlipTacToeCoordinate 
 {
 	return Board->getCurrentPieceAt(Coordinate);
 }
+
+AFlipTacToePiece* AFlipTacToeGameState::RemovePieceAt(FFlipTacToeCoordinate Coordinate)
+{
+	return Board->RemovePieceAt(Coordinate);
+}
+
+bool AFlipTacToeGameState::IsEmptyAt(FFlipTacToeCoordinate Coordinate)
+{
+	return Board->IsEmptyAt(Coordinate);
+}
+
+bool AFlipTacToeGameState::SetCurrentPieceAt(FFlipTacToeCoordinate Coordinate, AFlipTacToePiece* NewPiece)
+{
+	return Board->SetCurrentPieceAt(Coordinate, NewPiece);
+}
+
 

@@ -4,33 +4,25 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/GameMode.h"
+#include "FlipTacToeGameState.h"
 #include "FlipTacToeGameMode.generated.h"
 
-// Forward Declarations
-class AFlipTacToePlayerController;
-class AFlipTacToePlayerPawn;
-
-/**
- * 
- */
 UCLASS()
 class FLIPTACTOE_API AFlipTacToeGameMode : public AGameMode
 {
 	GENERATED_BODY()
-protected:
-	virtual void BeginPlay() override;
 public:
 	UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = "References")
-	AFlipTacToePlayerController *PlayerControllerRef;
-	UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = "References")
-	AFlipTacToePlayerPawn *PlayerPawnRef;
+	AFlipTacToeGameState* FlipTacToeGameState;
 public:
 	UFUNCTION(BlueprintCallable, Category = "Setup")
-	void Initialize();
-	UFUNCTION(BlueprintCallable, Category = "Setup")
-	void SetPlayerControllerRef();
-	UFUNCTION(BlueprintCallable, Category = "Setup")
-	void SetPlayerRef();
+	AFlipTacToePiece* getCurrentPieceAt(FFlipTacToeCoordinate Coordinate);
+	UFUNCTION(BlueprintCallable, Category = "Gameplay")
+	AFlipTacToePiece* RemovePieceAt(FFlipTacToeCoordinate Coordinate);
+	UFUNCTION(BlueprintCallable, Category = "Gameplay")
+	bool IsEmptyAt(FFlipTacToeCoordinate Coordinate);
+	UFUNCTION(BlueprintCallable, Category = "Gameplay")
+	bool SetCurrentPieceAt(FFlipTacToeCoordinate Coordinate, AFlipTacToePiece* NewPiece);
 
 	UFUNCTION(BlueprintImplementableEvent, Category = "Navigation")
 	void ShowMainMenu();

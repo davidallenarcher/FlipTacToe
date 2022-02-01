@@ -30,6 +30,9 @@ bool AFlipTacToeBoardSpace::SetCurrentPiece(AFlipTacToePiece* NewPiece)
 	bool result = false;
 	if (IsEmpty()) {
 		CurrentPiece = NewPiece;
+		NewPiece->DetachFromActor(FDetachmentTransformRules::KeepRelativeTransform);
+		NewPiece->AttachToActor(this, FAttachmentTransformRules::SnapToTargetNotIncludingScale);
+		NewPiece->AttachToComponent(PieceCenterOfRotation, FAttachmentTransformRules::SnapToTargetNotIncludingScale);
 		result = true;
 	}
 	return result;

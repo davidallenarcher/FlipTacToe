@@ -5,7 +5,6 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "FlipTacToeBoardSpace.h"
-#include "Structs/FlipTacToePlayer.h"
 #include "FlipTacToeBoard.generated.h"
 
 UCLASS()
@@ -17,12 +16,19 @@ public:
 	AFlipTacToeBoard();
 
 public:
-	UFUNCTION(BlueprintCallable, Category = "Setup")
+	UFUNCTION(BlueprintCallable, Category = "Gameplay")
 	AFlipTacToePiece* getCurrentPieceAt(FFlipTacToeCoordinate Coordinate);
-private:
-	UFUNCTION()
+	UFUNCTION(BlueprintCallable, Category = "Gameplay")
+	AFlipTacToePiece* RemovePieceAt(FFlipTacToeCoordinate Coordinate);
+	UFUNCTION(BlueprintCallable, Category = "Gameplay")
+	bool IsEmptyAt(FFlipTacToeCoordinate Coordinate);
+	UFUNCTION(BlueprintCallable, Category = "Gameplay")
+	bool SetCurrentPieceAt(FFlipTacToeCoordinate Coordinate, AFlipTacToePiece* NewPiece);
+	UFUNCTION(BlueprintCallable, Category = "Gameplay")
 	AFlipTacToeBoardSpace* getSpaceAt(FFlipTacToeCoordinate Coordinate);
-public:
+private:
+	
+protected:
 	UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = "References")
 	TArray<AFlipTacToeBoardSpace*> Spaces;
 };

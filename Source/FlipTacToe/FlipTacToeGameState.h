@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/GameState.h"
 #include "FlipTacToeBoard.h"
+
 #include "FlipTacToeGameState.generated.h"
 
 // Forward Declarations
@@ -26,10 +27,12 @@ public:
 	UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = "References")
 	AFlipTacToePiece* SelectedPiece;
 public:
-	UFUNCTION(BlueprintCallable, Category = "Setup")
+	UFUNCTION(BlueprintCallable, Category = "Gameplay")
 	AFlipTacToePiece* getCurrentPieceAt(FFlipTacToeCoordinate Coordinate);
-
-public:
-	UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = "References")
-	TArray<FFlipTacToePlayer> Players;
+	UFUNCTION(BlueprintCallable, Category = "Gameplay")
+	AFlipTacToePiece* RemovePieceAt(FFlipTacToeCoordinate Coordinate);
+	UFUNCTION(BlueprintCallable, Category = "Gameplay")
+	bool IsEmptyAt(FFlipTacToeCoordinate Coordinate);
+	UFUNCTION(BlueprintCallable, Category = "Gameplay")
+	bool SetCurrentPieceAt(FFlipTacToeCoordinate Coordinate, AFlipTacToePiece* NewPiece);
 };

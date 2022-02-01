@@ -4,8 +4,6 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "FlipTacToeGameMode.h"
-#include "FlipTacToePlayerController.h"
 #include "FlipTacToePiece.h"
 #include "Structs/FlipTacToeCoordinate.h"
 #include "FlipTacToeBoardSpace.generated.h"
@@ -33,6 +31,8 @@ public:
 	FFlipTacToeCoordinate Coordinate;
 
 protected:
+	UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = "References")
+	USceneComponent* PieceCenterOfRotation;
 	UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = "References")
 	AFlipTacToePiece* CurrentPiece;
 };
