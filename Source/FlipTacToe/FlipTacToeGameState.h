@@ -5,12 +5,8 @@
 #include "CoreMinimal.h"
 #include "GameFramework/GameState.h"
 #include "FlipTacToeBoard.h"
-
+#include "Enums/FlipTacToeGamePhase.h"
 #include "FlipTacToeGameState.generated.h"
-
-// Forward Declarations
-class AFlipTacToeBoard;
-class AFlipTacToePiece;
 
 /**
  * 
@@ -26,6 +22,8 @@ public:
 	AFlipTacToeBoard* Board;
 	UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = "References")
 	AFlipTacToePiece* SelectedPiece;
+	UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = "Gameplay")
+	FlipTacToeGamePhase CurrentGamePhase;
 public:
 	UFUNCTION(BlueprintCallable, Category = "Gameplay")
 	AFlipTacToePiece* getCurrentPieceAt(FFlipTacToeCoordinate Coordinate);
