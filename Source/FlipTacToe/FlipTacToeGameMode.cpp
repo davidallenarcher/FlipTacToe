@@ -5,22 +5,22 @@
 #include "FlipTacToePlayerPawn.h"
 #include "Kismet/GameplayStatics.h"
 
-AFlipTacToePiece* AFlipTacToeGameMode::getCurrentPieceAt(FFlipTacToeCoordinate Coordinate)
+AFlipTacToePiece* AFlipTacToeGameMode::GetCurrentPieceAt(FFlipTacToeCoordinate Coordinate)
 {
-	return FlipTacToeGameState->getCurrentPieceAt(Coordinate);
+	return GetGameState<AFlipTacToeGameState>()->getCurrentPieceAt(Coordinate);
 }
 
 AFlipTacToePiece* AFlipTacToeGameMode::RemovePieceAt(FFlipTacToeCoordinate Coordinate)
 {
-	return FlipTacToeGameState->RemovePieceAt(Coordinate);
+	return GetGameState<AFlipTacToeGameState>()->RemovePieceAt(Coordinate);
 }
 
 bool AFlipTacToeGameMode::IsEmptyAt(FFlipTacToeCoordinate Coordinate)
 {
-	return FlipTacToeGameState->IsEmptyAt(Coordinate);
+	return GetGameState<AFlipTacToeGameState>()->IsEmptyAt(Coordinate);
 }
 
 bool AFlipTacToeGameMode::SetCurrentPieceAt(FFlipTacToeCoordinate Coordinate, AFlipTacToePiece* NewPiece)
 {
-	return FlipTacToeGameState->SetCurrentPieceAt(Coordinate, NewPiece);
+	return GetGameState<AFlipTacToeGameState>()->SetCurrentPieceAt(Coordinate, NewPiece);
 }

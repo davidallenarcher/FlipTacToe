@@ -19,6 +19,7 @@ public:
 	void SetShownFace(FlipTacToeFace NewFace);
 	UFUNCTION(BlueprintCallable, Category = "Gameplay")
 	FlipTacToeFace FlipFace();
-private:
+public:
+	UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = "Gameplay", meta = (ExposeOnSpawn = "true"))
 	FlipTacToeFace ShownFace;
 };

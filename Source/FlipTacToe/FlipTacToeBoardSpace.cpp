@@ -20,7 +20,7 @@ AFlipTacToePiece* AFlipTacToeBoardSpace::RemovePiece()
 	return CurrentPiece;
 }
 
-bool AFlipTacToeBoardSpace::IsEmpty() 
+bool AFlipTacToeBoardSpace::IsEmpty()
 {
 	return GetCurrentPiece() == nullptr;
 }
