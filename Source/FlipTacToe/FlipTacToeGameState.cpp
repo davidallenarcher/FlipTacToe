@@ -52,7 +52,20 @@ bool AFlipTacToeGameState::IsEmptyAt(FFlipTacToeCoordinate Coordinate)
 
 bool AFlipTacToeGameState::SetCurrentPieceAt(FFlipTacToeCoordinate Coordinate, AFlipTacToePiece* NewPiece)
 {
-	return Board->SetCurrentPieceAt(Coordinate, NewPiece);
+	const bool result = Board->SetCurrentPieceAt(Coordinate, NewPiece);
+	if (result)
+	{
+		if (CurrentPlayer.ID == Player1.ID)
+		{
+			CurrentPlayer = Player2;
+		}
+		else
+		{
+			CurrentPlayer = Player1;
+		}
+		CurrentGamePhase = FlipTacToeGamePhase::FLIP_OPPONENT_PIECE;
+	}
+	return ;
 }
 
 bool AFlipTacToeGameState::FlipPiece(FFlipTacToeCoordinate FromCoordinate, FFlipTacToeCoordinate ToCoordinate)
@@ -63,9 +76,24 @@ bool AFlipTacToeGameState::FlipPiece(FFlipTacToeCoordinate FromCoordinate, FFlip
 	if (deltaColumn * deltaColumn + deltaRow * deltaRow == 1) {
 		if (!Board->IsEmptyAt(FromCoordinate) && Board->IsEmptyAt(ToCoordinate)) {
 			Board->SetCurrentPieceAt(ToCoordinate, Board->RemovePieceAt(FromCoordinate));
+			TArray<FFlipTacToeTriple> WinningLines = GetWinningLines();
+			if (WinningLines.Num() > 0) 
+			{
+				CurrentGamePhase = FlipTacToeGamePhase::GAME_OVER;
+			}
+			else 
+			{
+				CurrentGamePhase = FlipTacToeGamePhase::PLACE_OWN_PIECE;
+			}
 		}
 	}
 	return result;
+}
+
+TArray<FFlipTacToeTriple> AFlipTacToeGameState::GetWinningLines()
+{
+	// TODO actually search for winning lines
+	return TArray<FFlipTacToeTriple>();
 }
 
 

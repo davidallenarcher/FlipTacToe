@@ -9,7 +9,7 @@
  *
  */
 USTRUCT(BlueprintType)
-struct FLIPTACTOE_API FFlipTacToeclipseTriple
+struct FLIPTACTOE_API FFlipTacToeTriple
 {
 	GENERATED_BODY()
 

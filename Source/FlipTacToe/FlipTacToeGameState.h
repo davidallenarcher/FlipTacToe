@@ -7,6 +7,7 @@
 #include "FlipTacToeBoard.h"
 #include "Enums/FlipTacToeGamePhase.h"
 #include "Structs/FlipTacToePlayer.h"
+#include "Structs/FlipTacToeTriple.h"
 #include "FlipTacToeGameState.generated.h"
 
 /**
@@ -41,6 +42,9 @@ public:
 	bool SetCurrentPieceAt(FFlipTacToeCoordinate Coordinate, AFlipTacToePiece* NewPiece);
 	UFUNCTION(BlueprintCallable, Category = "Gameplay")
 	bool FlipPiece(FFlipTacToeCoordinate FromCoordinate, FFlipTacToeCoordinate ToCoordinate);
+private:
+	UFUNCTION()
+	TArray<FFlipTacToeTriple> GetWinningLines();
 private:
 	UPROPERTY()
 	FlipTacToeGamePhase CurrentGamePhase;
