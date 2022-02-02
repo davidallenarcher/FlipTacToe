@@ -8,7 +8,7 @@ AFlipTacToePlayerPawn::AFlipTacToePlayerPawn()
 {
  	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
-
+/*
 	Player0Ref.Name = "Player 1";
 	Player0Ref.PlayerShape = FlipTacToeShape::SUN;
 	Player0Ref.Index = 0;
@@ -16,6 +16,7 @@ AFlipTacToePlayerPawn::AFlipTacToePlayerPawn()
 	Player1Ref.Name = "Player 2";
 	Player1Ref.PlayerShape = FlipTacToeShape::MOON;
 	Player1Ref.Index = 1;
+//*/
 }
 
 // Called when the game starts or when spawned

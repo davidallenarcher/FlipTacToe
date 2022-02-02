@@ -29,10 +29,11 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "Setup")
 	void Initialize();
-
+/*
 public:
 	UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = "References")
 	FFlipTacToePlayer Player0Ref;
 	UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = "References")
 	FFlipTacToePlayer Player1Ref;
+//*/
 };

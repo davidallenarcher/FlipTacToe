@@ -19,6 +19,22 @@ void AFlipTacToeGameState::BeginPlay()
 	}
 }
 
+void AFlipTacToeGameState::NewGame()
+{
+	CurrentPlayer = Player1;
+	CurrentGamePhase = FlipTacToeGamePhase::GAME_NOT_STARTED;
+}
+
+FFlipTacToePlayer AFlipTacToeGameState::GetCurrentPlayer()
+{
+	return CurrentPlayer;
+}
+
+FlipTacToeGamePhase AFlipTacToeGameState::GetCurrentGamePhase()
+{
+	return CurrentGamePhase;
+}
+
 AFlipTacToePiece* AFlipTacToeGameState::getCurrentPieceAt(FFlipTacToeCoordinate Coordinate)
 {
 	return Board->getCurrentPieceAt(Coordinate);
@@ -37,6 +53,19 @@ bool AFlipTacToeGameState::IsEmptyAt(FFlipTacToeCoordinate Coordinate)
 bool AFlipTacToeGameState::SetCurrentPieceAt(FFlipTacToeCoordinate Coordinate, AFlipTacToePiece* NewPiece)
 {
 	return Board->SetCurrentPieceAt(Coordinate, NewPiece);
+}
+
+bool AFlipTacToeGameState::FlipPiece(FFlipTacToeCoordinate FromCoordinate, FFlipTacToeCoordinate ToCoordinate)
+{
+	bool result = false;
+	int deltaColumn = FromCoordinate.column - ToCoordinate.column;
+	int deltaRow = FromCoordinate.row - ToCoordinate.row;
+	if (deltaColumn * deltaColumn + deltaRow * deltaRow == 1) {
+		if (!Board->IsEmptyAt(FromCoordinate) && Board->IsEmptyAt(ToCoordinate)) {
+			Board->SetCurrentPieceAt(ToCoordinate, Board->RemovePieceAt(FromCoordinate));
+		}
+	}
+	return result;
 }
 
 
