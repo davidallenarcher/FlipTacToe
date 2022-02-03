@@ -2,7 +2,7 @@
 
 
 #include "FlipTacToeGameInstance.h"
-
+/*
 void UFlipTacToeGameInstance::LaunchLobby_Implementation(bool IsLanEnabled, const FText &ServerName)
 {
 	P_ServerName = ServerName;
@@ -10,3 +10,4 @@ void UFlipTacToeGameInstance::LaunchLobby_Implementation(bool IsLanEnabled, cons
 	// TODO CREATE SESSION
 	// https://youtu.be/78XJYBfWXAA?list=PLZlv_N0_O1gYqSlbGQVKsRg6fpxWndZqZ&t=745
 }
+//*/
