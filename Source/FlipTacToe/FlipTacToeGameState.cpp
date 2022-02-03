@@ -65,7 +65,7 @@ bool AFlipTacToeGameState::SetCurrentPieceAt(FFlipTacToeCoordinate Coordinate, A
 		}
 		CurrentGamePhase = FlipTacToeGamePhase::FLIP_OPPONENT_PIECE;
 	}
-	return ;
+	return result;
 }
 
 bool AFlipTacToeGameState::FlipPiece(FFlipTacToeCoordinate FromCoordinate, FFlipTacToeCoordinate ToCoordinate)

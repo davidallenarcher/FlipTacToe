@@ -12,6 +12,8 @@ class FLIPTACTOE_API AFlipTacToeGameMode : public AGameMode
 {
 	GENERATED_BODY()
 public:
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Classes)
+	TSubclassOf<AFlipTacToePiece> PieceClass;
 	UFUNCTION(BlueprintCallable, Category = "Gameplay")
 	AFlipTacToePiece* GetCurrentPieceAt(FFlipTacToeCoordinate Coordinate);
 	UFUNCTION(BlueprintCallable, Category = "Gameplay")
@@ -19,7 +21,8 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Gameplay")
 	bool IsEmptyAt(FFlipTacToeCoordinate Coordinate);
 	UFUNCTION(BlueprintCallable, Category = "Gameplay")
-	bool SetCurrentPieceAt(FFlipTacToeCoordinate Coordinate, AFlipTacToePiece* NewPiece);
+	//bool SetCurrentPieceAt(FFlipTacToeCoordinate Coordinate, AFlipTacToePiece* NewPiece);
+	bool SetCurrentPieceAt(FFlipTacToeCoordinate Coordinate, UMaterialInstance* Material, FlipTacToeFace faceUp);
 	UFUNCTION(BlueprintImplementableEvent, Category = "Navigation")
 	void ShowMainMenu();
 	UFUNCTION(BlueprintImplementableEvent, Category = "Navigation")
