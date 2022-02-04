@@ -23,4 +23,5 @@ private:
 	//UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = "Gameplay", meta = (ExposeOnSpawn = "true"))
 	UPROPERTY()
 	FlipTacToeFace ShownFace;
+
 };
