@@ -4,9 +4,10 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "FlipTacToePlayer.h"
 #include "../Enums/FlipTacToeFace.h"
 #include "FlipTacToePiece.generated.h"
+
+class UFlipTacToePlayer;
 
 UCLASS()
 class FLIPTACTOE_API AFlipTacToePiece : public AActor
@@ -15,11 +16,10 @@ class FLIPTACTOE_API AFlipTacToePiece : public AActor
 public:	
 	AFlipTacToePiece();
 public:
-	UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = "Gameplay", BlueprintSetter=SetOwner, meta = (ExposeOnSpawn = "true"))
-	UFlipTacToePlayer* Owner;
-public:
-	UFUNCTION(BlueprintCallable, Category = "Gameplay")
-	bool SetOwner(UFlipTacToePlayer* Player);
+	UFUNCTION(BlueprintSetter)
+	void SetOwningPlayer(UFlipTacToePlayer* Player);
+	UFUNCTION(BlueprintGetter)
+	UFlipTacToePlayer* GetOwningPlayer();
 	UFUNCTION(BlueprintCallable, Category = "Gameplay")
 	FlipTacToeFace GetShownFace();
 	UFUNCTION(BlueprintCallable, Category = "Gameplay")
@@ -27,6 +27,8 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Gameplay")
 	FlipTacToeFace FlipFace();
 private:
+	UPROPERTY(EditInstanceOnly, BlueprintSetter = SetOwningPlayer, BlueprintGetter = GetOwningPlayer, meta = (ExposeOnSpawn = "true"))
+	UFlipTacToePlayer* OwningPlayer;
 	UPROPERTY()
 	FlipTacToeFace ShownFace;
 };

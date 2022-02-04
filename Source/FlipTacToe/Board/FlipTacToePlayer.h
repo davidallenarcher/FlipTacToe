@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "Materials/MaterialInstanceDynamic.h"
 #include "Engine/Texture.h"
+#include "FlipTacToePiece.h"
 #include "FlipTacToePlayer.generated.h"
 
 UCLASS()
@@ -14,10 +15,17 @@ class FLIPTACTOE_API UFlipTacToePlayer : public UObject
 public:	
 	UFlipTacToePlayer();
 public:
-	UPROPERTY()
+	UPROPERTY(EditInstanceOnly, BlueprintReadWrite, meta = (ExposeOnSpawn = "true"))
 	UMaterial* ParentPieceMaterial;
+	UPROPERTY(EditInstanceOnly, BlueprintReadWrite, meta = (ExposeOnSpawn = "true"))
 	UMaterial* ParentSpaceMaterial;
 public:
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Classes)
+	TSubclassOf<AFlipTacToePiece> PieceClass;
+	
+	UFUNCTION(BlueprintCallable, Category = "Pieces")
+	AFlipTacToePiece* GetPiece();
+
 	UFUNCTION(BlueprintCallable, Category = "Input Parameters")
 	void SetImageTexture(UTexture* Texture);
 	UFUNCTION(BlueprintCallable, Category = "Input Parameters")
@@ -44,4 +52,6 @@ private:
 	UMaterialInstanceDynamic* PieceMaterial;
 	UPROPERTY()
 	UMaterialInstanceDynamic* SpaceMaterial;
+	UPROPERTY()
+	TArray<AFlipTacToePiece*> Pieces;
 };
