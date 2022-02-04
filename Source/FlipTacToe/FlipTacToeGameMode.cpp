@@ -34,7 +34,11 @@ bool AFlipTacToeGameMode::SetCurrentPieceAt(FFlipTacToeCoordinate Coordinate, UM
 	float randomZAngle = FMath::RandRange(0, 3) * 90.0f;
 	AFlipTacToePiece* NewPiece = GetWorld()->SpawnActor<AFlipTacToePiece>(PieceClass,FVector(),FRotator(0,randomZAngle,0));
 	result = GetGameState<AFlipTacToeGameState>()->SetCurrentPieceAt(Coordinate, NewPiece);
-	if (!result)
+	if (result)
+	{
+
+	}
+	else
 	{
 		NewPiece->SetHidden(true);
 		NewPiece->ConditionalBeginDestroy();

@@ -29,6 +29,8 @@ public:
 	void NewGame();
 
 	UFUNCTION(BlueprintCallable, Category = "Gameplay")
+	int GetCurrentPlayerIndex();
+	UFUNCTION(BlueprintCallable, Category = "Gameplay")
 	FFlipTacToePlayer GetCurrentPlayer();
 	UFUNCTION(BlueprintCallable, Category = "Gameplay")
 	FlipTacToeGamePhase GetCurrentGamePhase();

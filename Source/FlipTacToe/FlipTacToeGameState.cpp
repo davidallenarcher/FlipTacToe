@@ -33,7 +33,12 @@ void AFlipTacToeGameState::NewGame()
 		CurrentPlayerIndex = 1;
 	}
 	LastStartPlayerIndex = CurrentPlayerIndex;
-	CurrentGamePhase = FlipTacToeGamePhase::GAME_NOT_STARTED;
+	CurrentGamePhase = FlipTacToeGamePhase::PLACE_OWN_PIECE;
+}
+
+int AFlipTacToeGameState::GetCurrentPlayerIndex()
+{
+	return CurrentPlayerIndex;
 }
 
 FFlipTacToePlayer AFlipTacToeGameState::GetCurrentPlayer()
@@ -77,7 +82,7 @@ bool AFlipTacToeGameState::SetCurrentPieceAt(FFlipTacToeCoordinate Coordinate, A
 			{
 				CurrentPlayerIndex = 1;
 			}
-			CurrentGamePhase = FlipTacToeGamePhase::FLIP_OPPONENT_PIECE;
+			//CurrentGamePhase = FlipTacToeGamePhase::FLIP_OPPONENT_PIECE;
 		}
 	}
 	return result;
