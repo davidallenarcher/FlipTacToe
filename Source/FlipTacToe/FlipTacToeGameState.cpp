@@ -17,17 +17,28 @@ void AFlipTacToeGameState::BeginPlay()
 	{
 		Board = (AFlipTacToeBoard*)Actors[0];
 	}
+	LastStartPlayerIndex = 2;
+
+	NewGame();
 }
 
 void AFlipTacToeGameState::NewGame()
 {
-	CurrentPlayer = Player1;
+	if (LastStartPlayerIndex == 1) 
+	{
+		CurrentPlayerIndex = 2;
+	}
+	else
+	{
+		CurrentPlayerIndex = 1;
+	}
+	LastStartPlayerIndex = CurrentPlayerIndex;
 	CurrentGamePhase = FlipTacToeGamePhase::GAME_NOT_STARTED;
 }
 
 FFlipTacToePlayer AFlipTacToeGameState::GetCurrentPlayer()
 {
-	return CurrentPlayer;
+	return (CurrentPlayerIndex == 1)?Player1:Player2;
 }
 
 FlipTacToeGamePhase AFlipTacToeGameState::GetCurrentGamePhase()
@@ -52,18 +63,22 @@ bool AFlipTacToeGameState::IsEmptyAt(FFlipTacToeCoordinate Coordinate)
 
 bool AFlipTacToeGameState::SetCurrentPieceAt(FFlipTacToeCoordinate Coordinate, AFlipTacToePiece* NewPiece)
 {
-	const bool result = Board->SetCurrentPieceAt(Coordinate, NewPiece);
-	if (result)
+	bool result = false;
+	if (CurrentGamePhase == FlipTacToeGamePhase::PLACE_OWN_PIECE) 
 	{
-		if (CurrentPlayer.ID == Player1.ID)
+		result = Board->SetCurrentPieceAt(Coordinate, NewPiece);
+		if (result)
 		{
-			CurrentPlayer = Player2;
+			if (CurrentPlayerIndex == 1)
+			{
+				CurrentPlayerIndex = 2;
+			}
+			else
+			{
+				CurrentPlayerIndex = 1;
+			}
+			CurrentGamePhase = FlipTacToeGamePhase::FLIP_OPPONENT_PIECE;
 		}
-		else
-		{
-			CurrentPlayer = Player1;
-		}
-		CurrentGamePhase = FlipTacToeGamePhase::FLIP_OPPONENT_PIECE;
 	}
 	return result;
 }

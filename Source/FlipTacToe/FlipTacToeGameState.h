@@ -49,9 +49,11 @@ private:
 	UPROPERTY()
 	FlipTacToeGamePhase CurrentGamePhase;
 	UPROPERTY()
-	FFlipTacToePlayer CurrentPlayer;
-	UPROPERTY()
 	FFlipTacToePlayer Player1;
 	UPROPERTY()
 	FFlipTacToePlayer Player2;
+	UPROPERTY()
+	int CurrentPlayerIndex;
+	UPROPERTY()
+	int LastStartPlayerIndex;
 };

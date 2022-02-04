@@ -12,6 +12,8 @@ class FLIPTACTOE_API AFlipTacToeGameMode : public AGameMode
 {
 	GENERATED_BODY()
 public:
+	AFlipTacToeGameMode();
+public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Classes)
 	TSubclassOf<AFlipTacToePiece> PieceClass;
 	UFUNCTION(BlueprintCallable, Category = "Gameplay")

@@ -1,6 +1,17 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "FlipTacToeGameMode.h"
+#include "FlipTacToePlayerPawn.h"
+#include "FlipTacToePlayerController.h"
+#include "FlipTacToePlayerState.h"
+
+AFlipTacToeGameMode::AFlipTacToeGameMode()
+{
+	DefaultPawnClass = AFlipTacToePlayerPawn::StaticClass();
+	GameStateClass = AFlipTacToeGameState::StaticClass();
+	PlayerControllerClass = AFlipTacToePlayerController::StaticClass();
+	PlayerStateClass = AFlipTacToePlayerState::StaticClass();
+}
 
 AFlipTacToePiece* AFlipTacToeGameMode::GetCurrentPieceAt(FFlipTacToeCoordinate Coordinate)
 {
@@ -20,7 +31,8 @@ bool AFlipTacToeGameMode::IsEmptyAt(FFlipTacToeCoordinate Coordinate)
 bool AFlipTacToeGameMode::SetCurrentPieceAt(FFlipTacToeCoordinate Coordinate, UMaterialInstance* Material, FlipTacToeFace faceUp)
 {
 	bool result = false;
-	AFlipTacToePiece* NewPiece = GetWorld()->SpawnActor<AFlipTacToePiece>(PieceClass);
+	float randomZAngle = FMath::RandRange(0, 3) * 90.0f;
+	AFlipTacToePiece* NewPiece = GetWorld()->SpawnActor<AFlipTacToePiece>(PieceClass,FVector(),FRotator(0,randomZAngle,0));
 	result = GetGameState<AFlipTacToeGameState>()->SetCurrentPieceAt(Coordinate, NewPiece);
 	if (!result)
 	{
@@ -30,10 +42,3 @@ bool AFlipTacToeGameMode::SetCurrentPieceAt(FFlipTacToeCoordinate Coordinate, UM
 	}
 	return result;
 }
-
-/*
-bool AFlipTacToeGameMode::SetCurrentPieceAt(FFlipTacToeCoordinate Coordinate, AFlipTacToePiece* NewPiece)
-{
-	return GetGameState<AFlipTacToeGameState>()->SetCurrentPieceAt(Coordinate, NewPiece);
-}
-//*/

@@ -2,7 +2,7 @@
 
 #pragma once
 
-#include "../Enums/FlipTacToeShape.h"
+#include "FlipTacToePieceParameters.h"
 #include "FlipTacToePlayer.generated.h"
 
 USTRUCT(BlueprintType)
@@ -11,8 +11,11 @@ struct FLIPTACTOE_API FFlipTacToePlayer
 	GENERATED_BODY()
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
-	FString Name;
+	FText Name;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
-	int ID;
+	FFlipTacToePieceParameters PieceParameters;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	FText Status = FText::FromString("Not Ready!");
 };
