@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerState.h"
-#include "Structs/FlipTacToePieceParameters.h"
+#include "../Structs/FlipTacToePieceParameters.h"
 #include "FlipTacToePlayerState.generated.h"
 
 /**

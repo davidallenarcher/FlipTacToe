@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/SaveGame.h"
-#include "Structs/FlipTacToePlayer.h"
+#include "../Structs/FlipTacToePlayerInfo.h"
 #include "FlipTacToeSaveGame.generated.h"
 
 /**
@@ -17,7 +17,7 @@ class FLIPTACTOE_API UFlipTacToeSaveGame : public USaveGame
 public:
 	//UPROPERTY( replicated )
 	UPROPERTY( replicated )
-	FFlipTacToePlayer PlayerInfo;
+	FFlipTacToePlayerInfo PlayerInfo;
 
 	void GetLifetimeReplicatedProps(TArray<FLifetimeProperty, TSizedDefaultAllocator<32> >& OutLifetimeProps) const;
 };

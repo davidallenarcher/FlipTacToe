@@ -36,7 +36,7 @@ bool AFlipTacToeGameMode::SetCurrentPieceAt(FFlipTacToeCoordinate Coordinate, UM
 	result = GetGameState<AFlipTacToeGameState>()->SetCurrentPieceAt(Coordinate, NewPiece);
 	if (result)
 	{
-
+		//NewPiece->
 	}
 	else
 	{

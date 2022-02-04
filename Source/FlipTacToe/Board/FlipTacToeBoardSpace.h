@@ -5,7 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "FlipTacToePiece.h"
-#include "Structs/FlipTacToeCoordinate.h"
+#include "../Structs/FlipTacToeCoordinate.h"
 #include "FlipTacToeBoardSpace.generated.h"
 
 UCLASS()

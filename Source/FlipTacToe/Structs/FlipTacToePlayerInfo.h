@@ -3,10 +3,10 @@
 #pragma once
 
 #include "FlipTacToePieceParameters.h"
-#include "FlipTacToePlayer.generated.h"
+#include "FlipTacToePlayerInfo.generated.h"
 
 USTRUCT(BlueprintType)
-struct FLIPTACTOE_API FFlipTacToePlayer
+struct FLIPTACTOE_API FFlipTacToePlayerInfo
 {
 	GENERATED_BODY()
 

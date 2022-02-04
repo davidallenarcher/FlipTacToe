@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "Enums/FlipTacToeFace.h"
+#include "../Enums/FlipTacToeFace.h"
 #include "FlipTacToePiece.generated.h"
 
 UCLASS()

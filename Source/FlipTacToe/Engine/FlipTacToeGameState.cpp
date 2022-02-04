@@ -2,7 +2,6 @@
 
 
 #include "FlipTacToeGameState.h"
-#include "FlipTacToeBoard.h"
 #include "Kismet/GameplayStatics.h"
 
 void AFlipTacToeGameState::BeginPlay()
@@ -41,7 +40,7 @@ int AFlipTacToeGameState::GetCurrentPlayerIndex()
 	return CurrentPlayerIndex;
 }
 
-FFlipTacToePlayer AFlipTacToeGameState::GetCurrentPlayer()
+FFlipTacToePlayerInfo AFlipTacToeGameState::GetCurrentPlayer()
 {
 	return (CurrentPlayerIndex == 1)?Player1:Player2;
 }

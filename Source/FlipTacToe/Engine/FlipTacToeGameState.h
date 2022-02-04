@@ -4,10 +4,10 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/GameState.h"
-#include "FlipTacToeBoard.h"
-#include "Enums/FlipTacToeGamePhase.h"
-#include "Structs/FlipTacToePlayer.h"
-#include "Structs/FlipTacToeTriple.h"
+#include "../Board/FlipTacToeBoard.h"
+#include "../Enums/FlipTacToeGamePhase.h"
+#include "../Structs/FlipTacToePlayerInfo.h"
+#include "../Structs/FlipTacToeTriple.h"
 #include "FlipTacToeGameState.generated.h"
 
 /**
@@ -31,7 +31,7 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Gameplay")
 	int GetCurrentPlayerIndex();
 	UFUNCTION(BlueprintCallable, Category = "Gameplay")
-	FFlipTacToePlayer GetCurrentPlayer();
+	FFlipTacToePlayerInfo GetCurrentPlayer();
 	UFUNCTION(BlueprintCallable, Category = "Gameplay")
 	FlipTacToeGamePhase GetCurrentGamePhase();
 	UFUNCTION(BlueprintCallable, Category = "Gameplay")
@@ -51,9 +51,9 @@ private:
 	UPROPERTY()
 	FlipTacToeGamePhase CurrentGamePhase;
 	UPROPERTY()
-	FFlipTacToePlayer Player1;
+	FFlipTacToePlayerInfo Player1;
 	UPROPERTY()
-	FFlipTacToePlayer Player2;
+	FFlipTacToePlayerInfo Player2;
 	UPROPERTY()
 	int CurrentPlayerIndex;
 	UPROPERTY()
