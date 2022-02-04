@@ -8,6 +8,16 @@ AFlipTacToePiece::AFlipTacToePiece()
 	PrimaryActorTick.bCanEverTick = false;
 }
 
+bool AFlipTacToePiece::SetOwner(UFlipTacToePlayer* Player)
+{
+	bool result = false;
+	if (Owner == nullptr && Player != nullptr) {
+		Owner = Player;
+		result = true;
+	}
+	return result;
+}
+
 FlipTacToeFace AFlipTacToePiece::GetShownFace()
 {
 	return ShownFace;
