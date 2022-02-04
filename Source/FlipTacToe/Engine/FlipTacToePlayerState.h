@@ -16,7 +16,5 @@ class FLIPTACTOE_API AFlipTacToePlayerState : public APlayerState
 	GENERATED_BODY()
 public:
 	UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = "GamePlay")
-	FFlipTacToePieceParameters PrimaryParameters;
-	UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = "GamePlay")
-	FFlipTacToePieceParameters SecondaryParameters;
+	UFlipTacToePlayer* Player;
 };
