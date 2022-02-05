@@ -33,7 +33,7 @@ void AFlipTacToePiece::SetShownFace(FlipTacToeFace NewFace)
 	ShownFace = NewFace;
 }
 
-FlipTacToeFace AFlipTacToePiece::FlipFace()
+FlipTacToeFace AFlipTacToePiece::FlipFace(FlipTacToeDirection direction)
 {
 	if (ShownFace == FlipTacToeFace::HEADS) {
 		SetShownFace(FlipTacToeFace::TAILS);
