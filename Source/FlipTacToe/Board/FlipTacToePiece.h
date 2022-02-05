@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "../Enums/FlipTacToeFace.h"
+#include "../Enums/FlipTacToeDirection.h"
 #include "FlipTacToePiece.generated.h"
 
 class UFlipTacToePlayer;
@@ -25,7 +26,7 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Gameplay")
 	void SetShownFace(FlipTacToeFace NewFace);
 	UFUNCTION(BlueprintCallable, Category = "Gameplay")
-	FlipTacToeFace FlipFace();
+	FlipTacToeFace FlipFace(FlipTacToeDirection direction);
 private:
 	UPROPERTY(EditInstanceOnly, BlueprintSetter = SetOwningPlayer, BlueprintGetter = GetOwningPlayer, meta = (ExposeOnSpawn = "true"))
 	UFlipTacToePlayer* OwningPlayer;
