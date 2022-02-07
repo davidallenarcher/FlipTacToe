@@ -19,14 +19,19 @@ public:
 public:
 	UFUNCTION(BlueprintSetter)
 	void SetOwningPlayer(UFlipTacToePlayer* Player);
+
 	UFUNCTION(BlueprintGetter)
 	UFlipTacToePlayer* GetOwningPlayer();
+	
 	UFUNCTION(BlueprintCallable, Category = "Gameplay")
 	FlipTacToeFace GetShownFace();
+	
 	UFUNCTION(BlueprintCallable, Category = "Gameplay")
 	void SetShownFace(FlipTacToeFace NewFace);
+	
 	UFUNCTION(BlueprintCallable, Category = "Gameplay")
 	FlipTacToeFace FlipFace(FlipTacToeDirection direction);
+
 private:
 	UPROPERTY(EditInstanceOnly, BlueprintSetter = SetOwningPlayer, BlueprintGetter = GetOwningPlayer, meta = (ExposeOnSpawn = "true"))
 	UFlipTacToePlayer* OwningPlayer;
