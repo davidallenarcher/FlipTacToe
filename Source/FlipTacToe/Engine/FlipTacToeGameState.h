@@ -28,20 +28,25 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Gameplay")
 	void NewGame();
 
-	UFUNCTION(BlueprintCallable, Category = "Gameplay")
+	UFUNCTION(BlueprintCallable, Category = "Game Phase")
 	int GetCurrentPlayerIndex();
+	UFUNCTION(BlueprintCallable, Category = "Game Phase")
+	FlipTacToeGamePhase GetCurrentGamePhase();
+	
+	/*
 	UFUNCTION(BlueprintCallable, Category = "Gameplay")
 	FFlipTacToePlayerInfo GetCurrentPlayer();
+	//*/
+
 	UFUNCTION(BlueprintCallable, Category = "Gameplay")
-	FlipTacToeGamePhase GetCurrentGamePhase();
-	UFUNCTION(BlueprintCallable, Category = "Gameplay")
-	AFlipTacToePiece* getCurrentPieceAt(FFlipTacToeCoordinate Coordinate);
+	AFlipTacToePiece* GetCurrentPieceAt(FFlipTacToeCoordinate Coordinate);
 	UFUNCTION(BlueprintCallable, Category = "Gameplay")
 	AFlipTacToePiece* RemovePieceAt(FFlipTacToeCoordinate Coordinate);
 	UFUNCTION(BlueprintCallable, Category = "Gameplay")
 	bool IsEmptyAt(FFlipTacToeCoordinate Coordinate);
 	UFUNCTION(BlueprintCallable, Category = "Gameplay")
 	bool SetCurrentPieceAt(FFlipTacToeCoordinate Coordinate, AFlipTacToePiece* NewPiece);
+
 	UFUNCTION(BlueprintCallable, Category = "Gameplay")
 	bool FlipPiece(FFlipTacToeCoordinate FromCoordinate, FFlipTacToeCoordinate ToCoordinate);
 private:
@@ -50,10 +55,12 @@ private:
 private:
 	UPROPERTY()
 	FlipTacToeGamePhase CurrentGamePhase;
+	/*
 	UPROPERTY()
 	FFlipTacToePlayerInfo Player1;
 	UPROPERTY()
 	FFlipTacToePlayerInfo Player2;
+	//*/
 	UPROPERTY()
 	int CurrentPlayerIndex;
 	UPROPERTY()

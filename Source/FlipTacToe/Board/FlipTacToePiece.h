@@ -17,12 +17,13 @@ class FLIPTACTOE_API AFlipTacToePiece : public AActor
 public:	
 	AFlipTacToePiece();
 public:
+	/*
 	UFUNCTION(BlueprintSetter)
 	void SetOwningPlayer(UFlipTacToePlayer* Player);
 
 	UFUNCTION(BlueprintGetter)
 	UFlipTacToePlayer* GetOwningPlayer();
-	
+	//*/
 	UFUNCTION(BlueprintCallable, Category = "Gameplay")
 	FlipTacToeFace GetShownFace();
 	
@@ -33,8 +34,10 @@ public:
 	FlipTacToeFace FlipFace(FlipTacToeDirection direction);
 
 private:
+	/*
 	UPROPERTY(EditInstanceOnly, BlueprintSetter = SetOwningPlayer, BlueprintGetter = GetOwningPlayer, meta = (ExposeOnSpawn = "true"))
 	UFlipTacToePlayer* OwningPlayer;
+	//*/
 	UPROPERTY()
 	FlipTacToeFace ShownFace;
 };

@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "FlipTacToePlayerState.h"
 #include "FlipTacToePlayerController.generated.h"
 
 /**
@@ -13,6 +14,6 @@ class FLIPTACTOE_API AFlipTacToePlayerController : public APlayerController
 {
 	GENERATED_BODY()
 public:
-	UFUNCTION(BlueprintCallable, Category = "Setup")
-	void Initialize();
+	virtual void BeginPlay() override;
+private:
 };

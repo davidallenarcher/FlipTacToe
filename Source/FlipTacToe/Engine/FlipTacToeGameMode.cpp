@@ -15,7 +15,7 @@ AFlipTacToeGameMode::AFlipTacToeGameMode()
 
 AFlipTacToePiece* AFlipTacToeGameMode::GetCurrentPieceAt(FFlipTacToeCoordinate Coordinate)
 {
-	return GetGameState<AFlipTacToeGameState>()->getCurrentPieceAt(Coordinate);
+	return GetGameState<AFlipTacToeGameState>()->GetCurrentPieceAt(Coordinate);
 }
 
 AFlipTacToePiece* AFlipTacToeGameMode::RemovePieceAt(FFlipTacToeCoordinate Coordinate)
@@ -30,19 +30,17 @@ bool AFlipTacToeGameMode::IsEmptyAt(FFlipTacToeCoordinate Coordinate)
 
 bool AFlipTacToeGameMode::SetCurrentPieceAt(FFlipTacToeCoordinate Coordinate, UMaterialInstance* Material, FlipTacToeFace faceUp)
 {
+	AFlipTacToePiece* NewPiece;
 	bool result = false;
 	float randomZAngle = FMath::RandRange(0, 3) * 90.0f;
-	AFlipTacToePiece* NewPiece = GetWorld()->SpawnActor<AFlipTacToePiece>(PieceClass,FVector(),FRotator(0,randomZAngle,0));
-	result = GetGameState<AFlipTacToeGameState>()->SetCurrentPieceAt(Coordinate, NewPiece);
-	if (result)
-	{
-		//NewPiece->
+	
+	if (GetGameState<AFlipTacToeGameState>()->IsEmptyAt(Coordinate)) {
+		AFlipTacToePlayerState* playerState = (AFlipTacToePlayerState*)GetGameState<AFlipTacToeGameState>()->PlayerArray[0];
+		NewPiece = playerState->GetPiece();
+		NewPiece->SetActorRelativeRotation(FRotator(0.0f, randomZAngle, 0.0f).Quaternion());
+		GetGameState<AFlipTacToeGameState>()->SetCurrentPieceAt(Coordinate, NewPiece);
+		result = true;
 	}
-	else
-	{
-		NewPiece->SetHidden(true);
-		NewPiece->ConditionalBeginDestroy();
-		NewPiece = nullptr;
-	}
+
 	return result;
 }

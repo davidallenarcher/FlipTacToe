@@ -40,17 +40,19 @@ int AFlipTacToeGameState::GetCurrentPlayerIndex()
 	return CurrentPlayerIndex;
 }
 
+/*
 FFlipTacToePlayerInfo AFlipTacToeGameState::GetCurrentPlayer()
 {
 	return (CurrentPlayerIndex == 1)?Player1:Player2;
 }
+//*/
 
 FlipTacToeGamePhase AFlipTacToeGameState::GetCurrentGamePhase()
 {
 	return CurrentGamePhase;
 }
 
-AFlipTacToePiece* AFlipTacToeGameState::getCurrentPieceAt(FFlipTacToeCoordinate Coordinate)
+AFlipTacToePiece* AFlipTacToeGameState::GetCurrentPieceAt(FFlipTacToeCoordinate Coordinate)
 {
 	return Board->getCurrentPieceAt(Coordinate);
 }
