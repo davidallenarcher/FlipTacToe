@@ -10,27 +10,27 @@
 
 DECLARE_LOG_CATEGORY_EXTERN(LogMyGameState, Log, All);
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnStartGame, int32, StartingPlayerIndex);
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnActivePlayerSet, int32, NewActivePlayerIndex);
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_FourParams(FOnEndGame, int32, WinnerPlayerIndex, FGameCoordinate, Coord1, FGameCoordinate, Coord2, FGameCoordinate, Coord3);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnStartGame_DELETEME, int32, StartingPlayerIndex);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnActivePlayerSet_DELETEME, int32, NewActivePlayerIndex);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_FourParams(FOnEndGame_DELETEME, int32, WinnerPlayerIndex, FGameCoordinate, Coord1, FGameCoordinate, Coord2, FGameCoordinate, Coord3);
 
 UCLASS()
-class FLIPTACTOE_API AMyGameState : public AGameState
+class FLIPTACTOE_API AMyGameState_Deprecated : public AGameState
 {
 	GENERATED_BODY()
 
 public:
-	explicit AMyGameState(const FObjectInitializer& ObjectInitializer);
-	virtual ~AMyGameState() override;
+	explicit AMyGameState_Deprecated(const FObjectInitializer& ObjectInitializer);
+	virtual ~AMyGameState_Deprecated() override;
 
 	UPROPERTY(BlueprintAssignable)
-	FOnStartGame OnStartGame;
+	FOnStartGame_DELETEME OnStartGame;
 
 	UPROPERTY(BlueprintAssignable)
-	FOnActivePlayerSet OnActivePlayerSet;
+	FOnActivePlayerSet_DELETEME OnActivePlayerSet;
 
 	UPROPERTY(BlueprintAssignable)
-	FOnEndGame OnEndGame;
+	FOnEndGame_DELETEME OnEndGame;
 	
 	UPROPERTY(VisibleAnywhere, BlueprintGetter = GetGameBoard, Replicated)
 	AGameBoard* GameBoard;

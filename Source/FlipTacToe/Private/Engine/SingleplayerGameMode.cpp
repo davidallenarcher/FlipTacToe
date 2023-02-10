@@ -10,7 +10,6 @@ DEFINE_LOG_CATEGORY(LogSinglePlayerGameMode)
 
 ASingleplayerGameMode::ASingleplayerGameMode()
 {
-	GameStateClass = AMyGameState::StaticClass();
 	PlayerStateClass = AMyPlayerState::StaticClass();
 	PlayerControllerClass = AMyPlayerController::StaticClass();
 	DefaultPawnClass = AMyDefaultPawn::StaticClass();

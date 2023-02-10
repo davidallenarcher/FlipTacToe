@@ -10,7 +10,7 @@
 
 DECLARE_LOG_CATEGORY_EXTERN(LogGameBoard, Log, All);
 
-class AMyGameState;
+class AFTTMultiplayerGameState;
 
 UCLASS()
 class FLIPTACTOE_API AGameBoard : public AActor
@@ -57,5 +57,5 @@ private:
 	static int32 GetIndexForSpace(FGameCoordinate GameCoordinate);
 	
 	UPROPERTY()
-	AMyGameState* GameState;
+	AFTTMultiplayerGameState* GameState;
 };

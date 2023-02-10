@@ -8,37 +8,37 @@
 
 DEFINE_LOG_CATEGORY(LogMultiplayerGameState);
 
-AMultiplayerGameState::AMultiplayerGameState(const FObjectInitializer& ObjectInitializer)
+AMultiplayerGameState_DELETEME::AMultiplayerGameState_DELETEME(const FObjectInitializer& ObjectInitializer)
 	:Super(ObjectInitializer)
 {
 	bReplicates = true;
 }
 
-AMultiplayerGameState::~AMultiplayerGameState()
+AMultiplayerGameState_DELETEME::~AMultiplayerGameState_DELETEME()
 {
 }
 
-void AMultiplayerGameState::StartGame_Implementation(int32 StartingPlayerIndex)
+void AMultiplayerGameState_DELETEME::StartGame_Implementation(int32 StartingPlayerIndex)
 {
 	OnStartGame.Broadcast(StartingPlayerIndex);
 }
 
-void AMultiplayerGameState::BeginPlayerTurn_Multi_Implementation(int32 InActivePlayerIndex)
+void AMultiplayerGameState_DELETEME::BeginPlayerTurn_Multi_Implementation(int32 InActivePlayerIndex)
 {
 	SetActivePlayerIndex(InActivePlayerIndex);
 }
 
-void AMultiplayerGameState::EndPlayerTurn_Server_Implementation()
+void AMultiplayerGameState_DELETEME::EndPlayerTurn_Server_Implementation()
 {
 	BeginPlayerTurn_Multi((ActivePlayerIndex+1)%2);
 }
 
-AGameBoard* AMultiplayerGameState::GetGameBoard() const
+AGameBoard* AMultiplayerGameState_DELETEME::GetGameBoard() const
 {
 	return GameBoard;
 }
 
-void AMultiplayerGameState::BeginPlay()
+void AMultiplayerGameState_DELETEME::BeginPlay()
 {
 	Super::BeginPlay();
 	TArray<AActor*> FoundActors;
@@ -47,18 +47,18 @@ void AMultiplayerGameState::BeginPlay()
 	GameBoard->SetOwner(this);
 }
 
-int32 AMultiplayerGameState::GetActivePlayerIndex()
+int32 AMultiplayerGameState_DELETEME::GetActivePlayerIndex()
 {
 	return ActivePlayerIndex;
 }
 
-void AMultiplayerGameState::SetActivePlayerIndex(int32 NewActivePlayerIndex)
+void AMultiplayerGameState_DELETEME::SetActivePlayerIndex(int32 NewActivePlayerIndex)
 {
 	ActivePlayerIndex = NewActivePlayerIndex;
 	OnActivePlayerSet.Broadcast(NewActivePlayerIndex);
 }
 
-void AMultiplayerGameState::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
+void AMultiplayerGameState_DELETEME::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
 {
-	DOREPLIFETIME(AMultiplayerGameState, GameBoard);
+	DOREPLIFETIME(AMultiplayerGameState_DELETEME, GameBoard);
 }

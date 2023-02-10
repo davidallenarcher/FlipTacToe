@@ -2,12 +2,13 @@
 
 
 #include "Engine/MyPlayerController.h"
-#include "Engine/MyGameState.h"
+#include "Engine/Multiplayer/FTTMultiplayerGameState.h"
 
 DEFINE_LOG_CATEGORY(LogMyPlayerController);
 
 AMyPlayerController::AMyPlayerController()
 {
+	UE_LOG(LogMyPlayerController, Log, TEXT("Constructor[%p]: LocalRole:%s NetMode:%d"), this, *UEnum::GetValueAsString(GetLocalRole()), GetNetMode())
 }
 
 AMyPlayerController::~AMyPlayerController()
@@ -16,12 +17,18 @@ AMyPlayerController::~AMyPlayerController()
 
 void AMyPlayerController::BeginPlay()
 {
+	UE_LOG(LogMyPlayerController, Log, TEXT("PRE--BeginPlay[%p]: NetMode:%d"), this, GetNetMode())
 	Super::BeginPlay();
-	GameState = static_cast<AMultiplayerGameState*>(GetWorld()->GetGameState());
-	if (GameState && IsLocalController())
+	UE_LOG(LogMyPlayerController, Log, TEXT("POST--BeginPlay[%p]: NetMode:%d"), this, GetNetMode())
+	GameState = static_cast<AFTTMultiplayerGameState*>(GetWorld()->GetGameState());
+	if (GameState)
 	{
+		UE_LOG(LogMyPlayerController, Log, TEXT("BeginPlay[%p]: Starting"), this)
 		GameState->OnStartGame.AddDynamic(this, &AMyPlayerController::HandleStartGame);
 		GameState->OnActivePlayerSet.AddDynamic(this, &AMyPlayerController::HandleActivePlayerSet);
+	} else
+	{
+		UE_LOG(LogMyPlayerController, Log, TEXT("BeginPlay[%p]: GameState not set"), this)
 	}
 }
 
@@ -39,11 +46,11 @@ void AMyPlayerController::HandleStartGame(int32 StartingPlayerIndex)
 	if (PlayerIndex == StartingPlayerIndex)
 	{
 		SetPlayerPhase_Client(PlayerPhase::PlaceOwnPiece);
-		UE_LOG(LogMyPlayerController, Log, TEXT("HandleStartGame[%d]: PlaceOwnPiece"), PlayerIndex);
+		UE_LOG(LogMyPlayerController, Log, TEXT("HandleStartGame[%d](%p): PlaceOwnPiece"), PlayerIndex, this);
 	} else
 	{
 		SetPlayerPhase_Client(PlayerPhase::WaitingForOpponent);
-		UE_LOG(LogMyPlayerController, Log, TEXT("HandleStartGame[%d]: WaitingForOpponent"), PlayerIndex);
+		UE_LOG(LogMyPlayerController, Log, TEXT("HandleStartGame[%d](%p): WaitingForOpponent"), PlayerIndex, this);
 	}
 }
 
@@ -60,7 +67,7 @@ void AMyPlayerController::HandleActivePlayerSet(int32 ActivePlayer)
 	}
 }
 
-void AMyPlayerController::HandleSpaceSelect(FGameCoordinate SelectedSpace)
+void AMyPlayerController::HandleSpaceSelect_Implementation(FGameCoordinate SelectedSpace)
 {
 	if (GameState->ActivePlayerIndex == PlayerIndex)
 	{
@@ -82,12 +89,12 @@ void AMyPlayerController::HandleSpaceSelect(FGameCoordinate SelectedSpace)
 			// Performed in blueprints
 			break;
 		default:
-			UE_LOG(LogMyPlayerController, Log, TEXT("NOT YOUR TURN"));
+			UE_LOG(LogMyPlayerController, Log, TEXT("HandleSpaceSelect[%d](%s): NOT YOUR TURN"), PlayerIndex, *UEnum::GetValueAsString(CurrentPhase));
 			break;
 		}
 	} else
 	{
-		UE_LOG(LogMyPlayerController, Log, TEXT("NOT YOUR TURN"));
+		UE_LOG(LogMyPlayerController, Log, TEXT("HandleSpaceSelect[%d]: NOT YOUR TURN"), PlayerIndex);
 	}
 }
 
@@ -106,8 +113,13 @@ PlayerPhase AMyPlayerController::GetPlayerPhase()
 	return CurrentPlayerPhase;
 }
 
+void AMyPlayerController::SetPlayerIndex(int32 NewPlayerIndex)
+{
+	PlayerIndex = NewPlayerIndex;
+}
+
 void AMyPlayerController::PerformFlipPiece_Multi_Implementation(FGameCoordinate SourceCoordinate,
-	FGameCoordinate DestinationCoordinate)
+                                                                FGameCoordinate DestinationCoordinate)
 {
 	GameState->GetGameBoard()->FlipPiece(SourceCoordinate, DestinationCoordinate);
 }
@@ -146,6 +158,7 @@ void AMyPlayerController::PerformPlacePiece_Server_Implementation(FGameCoordinat
 	GameBoard->GetPieceInfoAtSpace(DestinationCoordinate, DestinationIsValid, DestinationIsEmpty, DestinationPlayerIndex, DestinationHeadsShown);
 	if (DestinationIsValid && DestinationIsEmpty)
 	{
+		// TODO move place piece into FTTMultiplayerGameState
 		PerformPlacePiece_Multi(DestinationCoordinate, ShownFace);
 		GameState->EndPlayerTurn_Server();
 	}

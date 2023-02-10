@@ -3,7 +3,7 @@
 
 #include "Game/GameBoard.h"
 
-#include "Engine/MyGameState.h"
+#include "Engine/Multiplayer/FTTMultiplayerGameState.h"
 #include "Net/UnrealNetwork.h"
 
 DEFINE_LOG_CATEGORY(LogGameBoard);
@@ -173,5 +173,5 @@ void AGameBoard::BeginPlay()
 {
 	Super::BeginPlay();
 
-	GameState = static_cast<AMyGameState*>(AActor::GetWorld()->GetGameState());
+	GameState = static_cast<AFTTMultiplayerGameState*>(AActor::GetWorld()->GetGameState());
 }

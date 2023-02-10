@@ -7,20 +7,20 @@
 #include "Enums/PieceFace.h"
 #include "GameFramework/PlayerController.h"
 #include "Structs/GameCoordinate.h"
-#include "MyPlayerController.generated.h"
+#include "FTTMultiplayerController.generated.h"
 
-DECLARE_LOG_CATEGORY_EXTERN(LogMyPlayerController, Log, All);
+DECLARE_LOG_CATEGORY_EXTERN(LogFTTMultiplayerController, Log, All);
 
 class AFTTMultiplayerGameState;
 
 UCLASS()
-class FLIPTACTOE_API AMyPlayerController : public APlayerController
+class FLIPTACTOE_API AFTTMultiplayerController : public APlayerController
 {
 	GENERATED_BODY()
 
 public:
-	AMyPlayerController();
-	virtual ~AMyPlayerController() override;
+	AFTTMultiplayerController();
+	virtual ~AFTTMultiplayerController() override;
 	
 	virtual void BeginPlay() override;
 	

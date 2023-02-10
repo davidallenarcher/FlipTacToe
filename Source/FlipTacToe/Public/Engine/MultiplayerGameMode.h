@@ -8,14 +8,18 @@
 
 DECLARE_LOG_CATEGORY_EXTERN(LogMultiplayerGameMode, Log, All);
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnGameReady_DELETEME);
+
 UCLASS()
-class FLIPTACTOE_API AMultiplayerGameMode : public AGameMode
+class FLIPTACTOE_API AMultiplayerGameMode_DELETEME : public AGameMode
 {
 	GENERATED_BODY()
 
 public:
-	AMultiplayerGameMode();
+	AMultiplayerGameMode_DELETEME();
 
+	FOnGameReady_DELETEME OnGameReady;
+	
 	void StartGame();
 	virtual void PostLogin(APlayerController* NewPlayer) override;
 };
