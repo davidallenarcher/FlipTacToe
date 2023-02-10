@@ -55,7 +55,4 @@ protected:
 private:
 	UFUNCTION()
 	static int32 GetIndexForSpace(FGameCoordinate GameCoordinate);
-	
-	UPROPERTY()
-	AFTTMultiplayerGameState* GameState;
 };

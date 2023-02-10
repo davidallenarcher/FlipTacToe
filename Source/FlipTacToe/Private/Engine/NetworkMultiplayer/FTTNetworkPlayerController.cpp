@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "Engine/NetworkMultiplayer/FTTNetworkGameState.h"
 #include "Engine/NetworkMultiplayer/FTTNetworkPlayerController.h"
+#include "Engine/NetworkMultiplayer/FTTNetworkGameState.h"
 
 DEFINE_LOG_CATEGORY(LogFTTNetworkPlayerController);
 

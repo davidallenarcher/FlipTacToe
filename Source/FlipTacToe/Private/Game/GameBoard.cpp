@@ -3,7 +3,6 @@
 
 #include "Game/GameBoard.h"
 
-#include "Engine/Multiplayer/FTTMultiplayerGameState.h"
 #include "Net/UnrealNetwork.h"
 
 DEFINE_LOG_CATEGORY(LogGameBoard);
@@ -78,8 +77,7 @@ void AGameBoard::CanPerformMove(FGameCoordinate SourceSpace, FGameCoordinate Des
 		const FPieceInfo SourcePieceInfo = BoardState[GetIndexForSpace(SourceSpace)];
 		const FPieceInfo DestinationPieceInfo = BoardState[GetIndexForSpace(DestinationSpace)];
 		CanPerform = (DestinationPieceInfo.IsEmpty()
-			&& !SourcePieceInfo.IsEmpty()
-			&& SourcePieceInfo.PlayerIndex == GameState->ActivePlayerIndex);
+			&& !SourcePieceInfo.IsEmpty());
 	}
 	else
 	{
@@ -154,9 +152,6 @@ void AGameBoard::FlipPiece(FGameCoordinate SourceSpace, FGameCoordinate Destinat
 			BoardState[GetIndexForSpace(DestinationSpace)].ShownFace = PieceFace::Heads;
 		}
 		BoardState[GetIndexForSpace(SourceSpace)].PlayerIndex = -1;
-	} else
-	{
-		UE_LOG(LogGameBoard, Warning, TEXT("FlipPiece[%d]: Without Authority"), GameState->GetActivePlayerIndex())
 	}
 }
 
@@ -172,6 +167,4 @@ void AGameBoard::PlacePiece(FGameCoordinate DestinationSpace, int32 PlayerIndex,
 void AGameBoard::BeginPlay()
 {
 	Super::BeginPlay();
-
-	GameState = static_cast<AFTTMultiplayerGameState*>(AActor::GetWorld()->GetGameState());
 }
