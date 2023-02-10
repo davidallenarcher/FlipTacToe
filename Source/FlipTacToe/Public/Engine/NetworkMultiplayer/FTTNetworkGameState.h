@@ -7,34 +7,34 @@
 #include "GameFramework/GameState.h"
 #include "Structs/GameCoordinate.h"
 #include "Structs/GameTriple.h"
-#include "FTTMultiplayerGameState.generated.h"
+#include "FTTNetworkGameState.generated.h"
 
-DECLARE_LOG_CATEGORY_EXTERN(LogFTTMultiplayerGameState, Log, All);
+DECLARE_LOG_CATEGORY_EXTERN(LogFTTNetworkGameState, Log, All);
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnStartGame_DELETE3, int32, StartingPlayerIndex);
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnActivePlayerSet_DELETE3, int32, NewActivePlayerIndex);
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnEndGame_DELETE3, int32, WinnerPlayerIndex, FGameTriple, Winning);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnStartGame, int32, StartingPlayerIndex);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnActivePlayerSet, int32, NewActivePlayerIndex);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnEndGame, int32, WinnerPlayerIndex, FGameTriple, Winning);
 
 UCLASS()
-class FLIPTACTOE_API AFTTMultiplayerGameState : public AGameState
+class FLIPTACTOE_API AFTTNetworkGameState : public AGameState
 {
 	GENERATED_BODY()
 
 public:
-	explicit AFTTMultiplayerGameState(const FObjectInitializer& ObjectInitializer);
-	virtual ~AFTTMultiplayerGameState() override;
+	explicit AFTTNetworkGameState(const FObjectInitializer& ObjectInitializer);
+	virtual ~AFTTNetworkGameState() override;
 
 	virtual void BeginPlay() override;
 
 	//** Start Delegates *//
 	UPROPERTY(BlueprintAssignable)
-	FOnStartGame_DELETE3 OnStartGame;
+	FOnStartGame OnStartGame;
 
 	UPROPERTY(BlueprintAssignable)
-	FOnActivePlayerSet_DELETE3 OnActivePlayerSet;
+	FOnActivePlayerSet OnActivePlayerSet;
 
 	UPROPERTY(BlueprintAssignable)
-	FOnEndGame_DELETE3 OnEndGame;
+	FOnEndGame OnEndGame;
 	//** End Delegates *//
 
 	//** Start Network Functions *//
