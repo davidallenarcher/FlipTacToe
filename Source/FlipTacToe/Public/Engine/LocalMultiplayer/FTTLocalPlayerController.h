@@ -44,7 +44,6 @@ public:
 	UFUNCTION()
 	void SetPlayerIndex(int32 NewPlayerIndex);
 	
-	/* BEGIN Networked Events */
 	UFUNCTION(BlueprintCallable)
 	void HandleSpaceSelect(FGameCoordinate SelectedSpace);
 
@@ -62,7 +61,6 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void PerformPlacePiece_Server(FGameCoordinate DestinationCoordinate, PieceFace ShownFace);
-	/* END Networked Events */
 	
 	UFUNCTION(BlueprintCallable)
 	void SelectSpace(FGameCoordinate SelectedSpace);
