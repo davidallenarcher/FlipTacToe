@@ -40,7 +40,16 @@ void AFTTLocalPlayerController::HandleStartGame(int32 StartingPlayerIndex)
 
 void AFTTLocalPlayerController::HandleActivePlayerSet(int32 ActivePlayer)
 {
-	SetPlayerPhase(PlayerPhase::SelectOpponentPiece);
+	int32 OtherPlayer = (ActivePlayer+1)%2;
+	TArray<FGameCoordinate> FlippablePieces;
+	GameState->GetGameBoard()->GetSpacesWithFlippablePieces(OtherPlayer, FlippablePieces);
+	if (FlippablePieces.Num() == 0)
+	{
+		SetPlayerPhase(PlayerPhase::SelectOpponentPiece);
+	} else
+	{
+		SetPlayerPhase(PlayerPhase::PlaceOwnPiece);
+	}
 }
 
 void AFTTLocalPlayerController::HandleSpaceSelect(FGameCoordinate SelectedSpace)
