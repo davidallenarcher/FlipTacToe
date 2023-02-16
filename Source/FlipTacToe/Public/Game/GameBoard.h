@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "GamePiece.h"
 #include "GameFramework/Actor.h"
 #include "Structs/GameCoordinate.h"
 #include "Structs/PieceInfo.h"
@@ -21,16 +22,16 @@ public:
 	AGameBoard(const FObjectInitializer& ObjectInitializer);
 	virtual ~AGameBoard() override;
 	
-	virtual void Tick(float DeltaSeconds) override;
-
 	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty> & OutLifetimeProps) const override; 
 
 	UFUNCTION(BlueprintPure)
 	static bool IsValidSpace(FGameCoordinate GameCoordinate);
+	
 	UFUNCTION(BlueprintPure)
 	bool IsEmptySpace(FGameCoordinate GameCoordinate);
+
 	UFUNCTION(BlueprintPure)
-	void GetPieceInfoAtSpace(FGameCoordinate GameCoordinate, bool& IsValid, bool& IsEmpty, int32& PlayerIndex, bool& HeadsShown);
+	void GetPieceAtSpace(FGameCoordinate GameCoordinate, AGamePiece*& GamePiece);
 	
 	UFUNCTION(BlueprintPure)
 	void CanPerformMove(FGameCoordinate SourceSpace, FGameCoordinate DestinationSpace, bool& CanPerform);
@@ -41,7 +42,7 @@ public:
 	void GetAvailableFlipSpaces(FGameCoordinate SourceSpace, TArray<FGameCoordinate>& AvailableSpaces);
 	UFUNCTION(BlueprintPure)
 	void GetEmptySpaces(TArray<FGameCoordinate>& EmptySpaces);
-	
+
 	UFUNCTION(BlueprintCallable)
 	void FlipPiece(FGameCoordinate SourceSpace, FGameCoordinate DestinationSpace);
 	UFUNCTION(BlueprintCallable)
@@ -51,7 +52,7 @@ protected:
 	virtual void BeginPlay() override;
 
 	UPROPERTY(Replicated, VisibleAnywhere)
-	TArray<FPieceInfo> BoardState;
+	TArray<AGamePiece*> Pieces;
 private:
 	UFUNCTION()
 	static int32 GetIndexForSpace(FGameCoordinate GameCoordinate);

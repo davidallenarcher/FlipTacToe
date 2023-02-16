@@ -25,8 +25,7 @@ void AFTTNetworkGameMode::StartGame() const
 			UGameplayStatics::GetPlayerController(GetWorld(),i);
 		AFTTNetworkPlayerController* FTTNetworkPlayerController =
 			static_cast<AFTTNetworkPlayerController*>(PlayerController);
-		FTTNetworkPlayerController->SetPlayerIndex_Client(i);
-		FTTNetworkPlayerController->SetPlayerIndex(i);
+		FTTNetworkPlayerController->SetPlayerIndex_Multi(i);
 	}
 	AGameStateBase* GameStateBase =
 		UGameplayStatics::GetGameState(GetWorld());

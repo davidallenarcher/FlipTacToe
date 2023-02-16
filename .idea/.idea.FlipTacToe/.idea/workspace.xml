@@ -7,21 +7,34 @@
   <component name="ChangeListManager">
     <list default="true" id="fbc54aac-fbaa-4306-a2db-5e9a4346a416" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.FlipTacToe/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FlipTacToe/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/FlipTacToe/Private/Engine/Multiplayer/FTTMultiplayerController.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/FlipTacToe/Private/Engine/Multiplayer/FTTMultiplayerGameMode.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/FlipTacToe/Private/Engine/Multiplayer/FTTMultiplayerGameState.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/FlipTacToe/Private/Engine/MultiplayerGameMode.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/FlipTacToe/Private/Engine/MultiplayerGameState.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/FlipTacToe/Private/Engine/MyPlayerController.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Config/DefaultEngine.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/DefaultEngine.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Engine/BP_GameInstance.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Engine/BP_GameInstance.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Engine/BP_PlayerController.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Engine/BP_PlayerState.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Engine/BP_PlayerState.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Game/BP_GameBoard.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Game/BP_GameBoard.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Game/BP_GamePiece.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Game/BP_GamePiece.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Levels/MainMenu/BP_MainMenu_Controller.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Levels/MainMenu/BP_MainMenu_Controller.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Levels/MainMenu/MainMenu.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Levels/MainMenu/MainMenu.umap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Levels/MainMenu/Widget_MainMenu.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Levels/MainMenu/Widget_MainMenu.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Levels/NetworkMultiplayer/Blueprints/BP_NetworkMultiplayerController.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Levels/NetworkMultiplayer/Blueprints/BP_NetworkMultiplayerController.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Levels/NetworkMultiplayer/Blueprints/GM_NetworkMultiplayer.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Levels/NetworkMultiplayer/Blueprints/GM_NetworkMultiplayer.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Levels/NetworkMultiplayer/Blueprints/GS_NetworkMultiplayer.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Levels/NetworkMultiplayer/Blueprints/GS_NetworkMultiplayer.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Levels/NetworkMultiplayer/NetworkMultiplayer.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Levels/NetworkMultiplayer/NetworkMultiplayer.umap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Materials/MAT_Piece.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Materials/MAT_Piece.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Materials/MAT_Piece_Inst.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Materials/MAT_Space.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Materials/MAT_Space.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Meshes/FlipTacToePiece.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Meshes/FlipTacToePiece.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Textures/PieceIcons/Moon.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Textures/PieceIcons/O.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Textures/PieceIcons/SG.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Textures/PieceIcons/ScorpionGlitch.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Textures/PieceIcons/Sun.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Textures/PieceIcons/X.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/FlipTacToe/Private/Engine/NetworkMultiplayer/FTTNetworkGameMode.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/FlipTacToe/Private/Engine/NetworkMultiplayer/FTTNetworkGameMode.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/FlipTacToe/Private/Engine/NetworkMultiplayer/FTTNetworkPlayerController.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/FlipTacToe/Private/Engine/NetworkMultiplayer/FTTNetworkPlayerController.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/FlipTacToe/Private/Engine/SingleplayerGameMode.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/FlipTacToe/Private/Engine/SingleplayerGameMode.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/FlipTacToe/Private/Game/GameBoard.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/FlipTacToe/Private/Game/GameBoard.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/FlipTacToe/Public/Engine/Multiplayer/FTTMultiplayerController.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/FlipTacToe/Public/Engine/Multiplayer/FTTMultiplayerGameMode.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/FlipTacToe/Public/Engine/Multiplayer/FTTMultiplayerGameState.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/FlipTacToe/Public/Engine/MultiplayerGameMode.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/FlipTacToe/Public/Engine/MultiplayerGameState.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/FlipTacToe/Public/Engine/MyPlayerController.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/FlipTacToe/Public/Engine/NetworkMultiplayer/FTTNetworkGameMode.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/FlipTacToe/Public/Engine/NetworkMultiplayer/FTTNetworkGameMode.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/FlipTacToe/Public/Engine/NetworkMultiplayer/FTTNetworkPlayerController.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/FlipTacToe/Public/Engine/NetworkMultiplayer/FTTNetworkPlayerController.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/FlipTacToe/Public/Game/GameBoard.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/FlipTacToe/Public/Game/GameBoard.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -277,7 +290,7 @@
       <updated>1675981922141</updated>
       <workItem from="1675981928373" duration="13113000" />
       <workItem from="1676048130751" duration="348000" />
-      <workItem from="1676048606145" duration="8601000" />
+      <workItem from="1676048606145" duration="36917000" />
     </task>
     <servers />
   </component>

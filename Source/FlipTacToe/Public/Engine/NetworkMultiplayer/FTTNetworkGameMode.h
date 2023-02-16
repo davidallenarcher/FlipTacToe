@@ -18,5 +18,6 @@ public:
 
 	UFUNCTION()
 	virtual void StartGame() const;
+
 	virtual void PostLogin(APlayerController* NewPlayer) override;
 };

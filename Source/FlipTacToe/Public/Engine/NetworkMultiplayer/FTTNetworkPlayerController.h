@@ -25,7 +25,7 @@ public:
 	virtual void BeginPlay() override;
 	
 	virtual void SetupInputComponent() override;
-
+	
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, DisplayName="OnPlayerPhaseChanged")
 	void ReceiveOnPlayerPhaseChanged(PlayerPhase NewPlayerPhase);
 	
@@ -35,9 +35,6 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void HandleActivePlayerSet(int32 ActivePlayerIndex);
 	
-	UFUNCTION(BlueprintCallable, Server, Reliable)
-	void HandleSpaceSelect(FGameCoordinate SelectedSpace);
-
 	UFUNCTION(BlueprintGetter)
 	PlayerPhase GetPlayerPhase();
 
@@ -48,11 +45,14 @@ public:
 	void SetPlayerIndex(int32 NewPlayerIndex);
 	
 	/* BEGIN Networked Events */
-	UFUNCTION(BlueprintCallable, Client, Reliable)
-	void SetPlayerIndex_Client(int32 NewPlayerIndex);
+	UFUNCTION(BlueprintCallable, Server, Reliable)
+	void HandleSpaceSelect_Server(FGameCoordinate SelectedSpace);
+	
+	UFUNCTION(BlueprintCallable, NetMulticast, Reliable)
+	void SetPlayerIndex_Multi(int32 NewPlayerIndex);
 
-	UFUNCTION(BlueprintCallable, Client, Reliable)
-	void SetPlayerPhase_Client(PlayerPhase NewPlayerPhase);
+	UFUNCTION(BlueprintCallable, NetMulticast, Reliable)
+	void SetPlayerPhase_Multi(PlayerPhase NewPlayerPhase);
 
 	UFUNCTION(BlueprintCallable, Server, Reliable)
 	void PerformFlipPiece_Server(FGameCoordinate SourceCoordinate, FGameCoordinate DestinationCoordinate);
@@ -69,6 +69,9 @@ public:
 	
 	UFUNCTION(BlueprintCallable)
 	void SelectSpace(FGameCoordinate SelectedSpace);
+
+	UFUNCTION(BlueprintCallable, BlueprintPure)
+	int32 GetPlayerIndex();
 	
 private:
 	UPROPERTY()

@@ -44,11 +44,11 @@ void AFTTNetworkPlayerController::HandleStartGame(int32 StartingPlayerIndex)
 {
 	if (PlayerIndex == StartingPlayerIndex)
 	{
-		SetPlayerPhase_Client(PlayerPhase::PlaceOwnPiece);
+		SetPlayerPhase_Multi(PlayerPhase::PlaceOwnPiece);
 		UE_LOG(LogFTTNetworkPlayerController, Log, TEXT("HandleStartGame[%d](%p): PlaceOwnPiece"), PlayerIndex, this);
 	} else
 	{
-		SetPlayerPhase_Client(PlayerPhase::WaitingForOpponent);
+		SetPlayerPhase_Multi(PlayerPhase::WaitingForOpponent);
 		UE_LOG(LogFTTNetworkPlayerController, Log, TEXT("HandleStartGame[%d](%p): WaitingForOpponent"), PlayerIndex, this);
 	}
 }
@@ -57,16 +57,16 @@ void AFTTNetworkPlayerController::HandleActivePlayerSet(int32 ActivePlayer)
 {
 	if (PlayerIndex == ActivePlayer)
 	{
-		SetPlayerPhase_Client(PlayerPhase::SelectOpponentPiece);
+		SetPlayerPhase_Multi(PlayerPhase::SelectOpponentPiece);
 		UE_LOG(LogFTTNetworkPlayerController, Log, TEXT("HandleActivePlayerSet[%d]: NewActivePlayer:%d - SelectOpponentPiece"), PlayerIndex, ActivePlayer);
 	} else
 	{
-		SetPlayerPhase_Client(PlayerPhase::WaitingForOpponent);
+		SetPlayerPhase_Multi(PlayerPhase::WaitingForOpponent);
 		UE_LOG(LogFTTNetworkPlayerController, Log, TEXT("HandleActivePlayerSet[%d]: NewActivePlayer:%d - WaitingForOpponent"), PlayerIndex, ActivePlayer);
 	}
 }
 
-void AFTTNetworkPlayerController::HandleSpaceSelect_Implementation(FGameCoordinate SelectedSpace)
+void AFTTNetworkPlayerController::HandleSpaceSelect_Server_Implementation(FGameCoordinate SelectedSpace)
 {
 	if (GameState->ActivePlayerIndex == PlayerIndex)
 	{
@@ -97,7 +97,7 @@ void AFTTNetworkPlayerController::HandleSpaceSelect_Implementation(FGameCoordina
 	}
 }
 
-void AFTTNetworkPlayerController::SetPlayerPhase_Client_Implementation(PlayerPhase NewPlayerPhase)
+void AFTTNetworkPlayerController::SetPlayerPhase_Multi_Implementation(PlayerPhase NewPlayerPhase)
 {
 	if (CurrentPlayerPhase != NewPlayerPhase)
 	{
@@ -131,67 +131,68 @@ void AFTTNetworkPlayerController::PerformPlacePiece_Multi_Implementation(FGameCo
 
 void AFTTNetworkPlayerController::SelectSpace(FGameCoordinate SelectedSpace)
 {
-	bool SpaceIsValid;
-	bool SpaceIsEmpty;
-	int32 SpacePlayerIndex;
-	bool SpaceHeadsShown;
-
 	AGameBoard* GameBoard = GameState->GetGameBoard();
-	GameBoard->GetPieceInfoAtSpace(SelectedSpace, SpaceIsValid, SpaceIsEmpty, SpacePlayerIndex, SpaceHeadsShown);
 	
-	if (SpaceIsValid && !SpaceIsEmpty && SpacePlayerIndex != PlayerIndex)
+	if (GameBoard->IsValidSpace(SelectedSpace))
 	{
-		OpponentSpace = SelectedSpace;
-		SetPlayerPhase_Client(PlayerPhase::FlipOpponentPiece);
+		AGamePiece* GamePiece;
+		GameBoard->GetPieceAtSpace(SelectedSpace, GamePiece);
+		if (GamePiece && GamePiece->PlayerIndex != PlayerIndex)
+		{
+			OpponentSpace = SelectedSpace;
+		}
 	}
+}
+
+int32 AFTTNetworkPlayerController::GetPlayerIndex()
+{
+	return PlayerIndex;
 }
 
 void AFTTNetworkPlayerController::PerformPlacePiece_Server_Implementation(FGameCoordinate DestinationCoordinate, PieceFace ShownFace)
 {
-	bool DestinationIsValid;
-	bool DestinationIsEmpty;
-	int32 DestinationPlayerIndex;
-	bool DestinationHeadsShown;
-
 	AGameBoard* GameBoard = GameState->GetGameBoard();
-	GameBoard->GetPieceInfoAtSpace(DestinationCoordinate, DestinationIsValid, DestinationIsEmpty, DestinationPlayerIndex, DestinationHeadsShown);
-	if (DestinationIsValid && DestinationIsEmpty)
+	if (GameBoard->IsValidSpace(DestinationCoordinate))
 	{
-		// TODO move place piece into FTTMultiplayerGameState
-		PerformPlacePiece_Multi(DestinationCoordinate, ShownFace);
-		GameState->EndPlayerTurn_Server();
+		AGamePiece* GamePiece;
+		GameBoard->GetPieceAtSpace(DestinationCoordinate, GamePiece);
+		if (!GamePiece)
+		{
+			PerformPlacePiece_Multi(DestinationCoordinate, ShownFace);
+			GameState->EndPlayerTurn_Server();
+		}
 	}
 }
 
-void AFTTNetworkPlayerController::SetPlayerIndex_Client_Implementation(int32 NewPlayerIndex)
+void AFTTNetworkPlayerController::SetPlayerIndex_Multi_Implementation(int32 NewPlayerIndex)
 {
 	PlayerIndex = NewPlayerIndex;
 }
 
 void AFTTNetworkPlayerController::PerformFlipPiece_Server_Implementation(FGameCoordinate SourceCoordinate, FGameCoordinate DestinationCoordinate)
 {
-	bool DestinationIsValid;
-	bool DestinationIsEmpty;
-	int32 DestinationPlayerIndex;
-	bool DestinationHeadsShown;
-
 	AGameBoard* GameBoard = GameState->GetGameBoard();
-	GameBoard->GetPieceInfoAtSpace(DestinationCoordinate, DestinationIsValid, DestinationIsEmpty, DestinationPlayerIndex, DestinationHeadsShown);
-	if (DestinationIsEmpty)
+	if (GameBoard->IsValidSpace(SourceCoordinate) && GameBoard->IsValidSpace(DestinationCoordinate))
 	{
-		PerformFlipPiece_Multi(SourceCoordinate, DestinationCoordinate);
-		SetPlayerPhase_Client(PlayerPhase::PlaceOwnPiece);
-	} else
-	{
-		// Selected Space has an opponent piece
-		if (DestinationPlayerIndex != PlayerIndex)
+		AGamePiece* SourcePiece;
+		AGamePiece* DestinationPiece;
+		GameBoard->GetPieceAtSpace(SourceCoordinate, SourcePiece);
+		GameBoard->GetPieceAtSpace(DestinationCoordinate, DestinationPiece);
+		if (DestinationPiece)
 		{
-			OpponentSpace = DestinationCoordinate;
+			PerformFlipPiece_Multi(SourceCoordinate, DestinationCoordinate);
+			SetPlayerPhase_Multi(PlayerPhase::PlaceOwnPiece);
 		}
-		// Selected Space has active player piece
 		else
 		{
-			SetPlayerPhase_Client(PlayerPhase::SelectOpponentPiece);
+			if (DestinationPiece->PlayerIndex != PlayerIndex)
+			{
+				OpponentSpace = DestinationCoordinate;
+			}
+			else
+			{
+				SetPlayerPhase_Multi(PlayerPhase::FlipOpponentPiece);
+			}
 		}
 	}
 }
