@@ -6,7 +6,6 @@
 #include "Game/GameBoard.h"
 #include "GameFramework/GameState.h"
 #include "Structs/GameCoordinate.h"
-#include "Structs/GameTriple.h"
 #include "FTTLocalGameState.generated.h"
 
 DECLARE_LOG_CATEGORY_EXTERN(LogFTTLocalGameState, Log, All);

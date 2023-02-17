@@ -38,9 +38,6 @@ public:
 	UFUNCTION(BlueprintGetter)
 	PlayerPhase GetPlayerPhase();
 
-	UPROPERTY(BlueprintGetter=GetPlayerPhase, DisplayName="PlayerPhase")
-	PlayerPhase CurrentPlayerPhase;
-
 	UFUNCTION()
 	void SetPlayerIndex(int32 NewPlayerIndex);
 	
@@ -67,6 +64,9 @@ public:
 
 	UFUNCTION(BlueprintCallable, BlueprintPure)
 	int32 GetPlayerIndex();
+
+	UPROPERTY(BlueprintGetter=GetPlayerPhase, DisplayName="PlayerPhase")
+	PlayerPhase CurrentPlayerPhase;
 	
 private:
 	UPROPERTY()
@@ -74,6 +74,7 @@ private:
 	
 	UPROPERTY()
 	int32 PlayerIndex;
+	
 protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	FGameCoordinate OpponentSpace;
