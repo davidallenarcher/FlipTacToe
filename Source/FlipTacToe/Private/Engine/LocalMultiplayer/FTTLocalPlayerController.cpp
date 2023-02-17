@@ -29,7 +29,7 @@ void AFTTLocalPlayerController::SetupInputComponent()
 	Super::SetupInputComponent();
 }
 
-void AFTTLocalPlayerController::ReceiveOnPlayerPhaseChanged_Implementation(PlayerPhase NewPlayerPhase)
+void AFTTLocalPlayerController::OnPlayerPhaseChanged_Implementation(PlayerPhase NewPlayerPhase)
 {
 }
 
@@ -80,7 +80,7 @@ void AFTTLocalPlayerController::SetPlayerPhase(PlayerPhase NewPlayerPhase)
 	if (CurrentPlayerPhase != NewPlayerPhase)
 	{
 		CurrentPlayerPhase = NewPlayerPhase;
-		ReceiveOnPlayerPhaseChanged(CurrentPlayerPhase);
+		OnPlayerPhaseChanged(CurrentPlayerPhase);
 	}
 }
 
@@ -97,12 +97,45 @@ void AFTTLocalPlayerController::SetPlayerIndex(int32 NewPlayerIndex)
 void AFTTLocalPlayerController::PerformFlipPiece(FGameCoordinate SourceCoordinate,
                                                                 FGameCoordinate DestinationCoordinate)
 {
-	GameState->GetGameBoard()->FlipPiece(SourceCoordinate, DestinationCoordinate);
+	AGameBoard* GameBoard = GameState->GetGameBoard();
+	if (GameBoard->IsValidSpace(SourceCoordinate) && GameBoard->IsValidSpace(DestinationCoordinate))
+	{
+		AGamePiece* SourcePiece;
+		AGamePiece* DestinationPiece;
+		GameBoard->GetPieceAtSpace(SourceCoordinate, SourcePiece);
+		GameBoard->GetPieceAtSpace(DestinationCoordinate, DestinationPiece);
+		if (DestinationPiece)
+		{
+			GameState->GetGameBoard()->FlipPiece(SourceCoordinate, DestinationCoordinate);
+			SetPlayerPhase(PlayerPhase::PlaceOwnPiece);
+		}
+		else
+		{
+			if (DestinationPiece->PlayerIndex != PlayerIndex)
+			{
+				OpponentSpace = DestinationCoordinate;
+			}
+			else
+			{
+				SetPlayerPhase(PlayerPhase::FlipOpponentPiece);
+			}
+		}
+	}
 }
 
 void AFTTLocalPlayerController::PerformPlacePiece(FGameCoordinate DestinationCoordinate, PieceFace ShownFace)
 {
-	GameState->GetGameBoard()->PlacePiece(DestinationCoordinate, PlayerIndex, ShownFace);
+	AGameBoard* GameBoard = GameState->GetGameBoard();
+	if (GameBoard->IsValidSpace(DestinationCoordinate))
+	{
+		AGamePiece* GamePiece;
+		GameBoard->GetPieceAtSpace(DestinationCoordinate, GamePiece);
+		if (!GamePiece)
+		{
+			GameState->GetGameBoard()->PlacePiece(DestinationCoordinate, PlayerIndex, ShownFace);
+			GameState->EndPlayerTurn_Server();
+		}
+	}
 }
 
 void AFTTLocalPlayerController::SelectSpace(FGameCoordinate SelectedSpace)
@@ -123,47 +156,4 @@ void AFTTLocalPlayerController::SelectSpace(FGameCoordinate SelectedSpace)
 int32 AFTTLocalPlayerController::GetPlayerIndex()
 {
 	return PlayerIndex;
-}
-
-void AFTTLocalPlayerController::PerformPlacePiece_Server(FGameCoordinate DestinationCoordinate, PieceFace ShownFace)
-{
-	AGameBoard* GameBoard = GameState->GetGameBoard();
-	if (GameBoard->IsValidSpace(DestinationCoordinate))
-	{
-		AGamePiece* GamePiece;
-		GameBoard->GetPieceAtSpace(DestinationCoordinate, GamePiece);
-		if (!GamePiece)
-		{
-			PerformPlacePiece(DestinationCoordinate, ShownFace);
-			GameState->EndPlayerTurn_Server();
-		}
-	}
-}
-
-void AFTTLocalPlayerController::PerformFlipPiece_Server(FGameCoordinate SourceCoordinate, FGameCoordinate DestinationCoordinate)
-{
-	AGameBoard* GameBoard = GameState->GetGameBoard();
-	if (GameBoard->IsValidSpace(SourceCoordinate) && GameBoard->IsValidSpace(DestinationCoordinate))
-	{
-		AGamePiece* SourcePiece;
-		AGamePiece* DestinationPiece;
-		GameBoard->GetPieceAtSpace(SourceCoordinate, SourcePiece);
-		GameBoard->GetPieceAtSpace(DestinationCoordinate, DestinationPiece);
-		if (DestinationPiece)
-		{
-			PerformFlipPiece(SourceCoordinate, DestinationCoordinate);
-			SetPlayerPhase(PlayerPhase::PlaceOwnPiece);
-		}
-		else
-		{
-			if (DestinationPiece->PlayerIndex != PlayerIndex)
-			{
-				OpponentSpace = DestinationCoordinate;
-			}
-			else
-			{
-				SetPlayerPhase(PlayerPhase::FlipOpponentPiece);
-			}
-		}
-	}
 }

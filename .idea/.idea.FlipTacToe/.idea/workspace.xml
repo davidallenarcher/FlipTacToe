@@ -6,8 +6,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="62bd733b-8bb3-4706-afa2-8d15cab29fa1" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.FlipTacToe/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FlipTacToe/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/FlipTacToe/Public/Engine/LocalMultiplayer/FTTLocalGameState.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/FlipTacToe/Public/Engine/LocalMultiplayer/FTTLocalGameState.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/FlipTacToe/Private/Engine/LocalMultiplayer/FTTLocalPlayerController.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/FlipTacToe/Private/Engine/LocalMultiplayer/FTTLocalPlayerController.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/FlipTacToe/Public/Engine/LocalMultiplayer/FTTLocalPlayerController.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/FlipTacToe/Public/Engine/LocalMultiplayer/FTTLocalPlayerController.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -32,9 +31,9 @@
   },
   "keyToStringList": {
     "rider.external.source.directories": [
-      "C:\\Users\\scorp\\AppData\\Roaming\\JetBrains\\Rider2022.3\\resharper-host\\DecompilerCache",
-      "C:\\Users\\scorp\\AppData\\Roaming\\JetBrains\\Rider2022.3\\resharper-host\\SourcesCache",
-      "C:\\Users\\scorp\\AppData\\Local\\Symbols\\src"
+      "C:\\Users\\DavidAllenArcher\\AppData\\Roaming\\JetBrains\\Rider2022.3\\resharper-host\\DecompilerCache",
+      "C:\\Users\\DavidAllenArcher\\AppData\\Roaming\\JetBrains\\Rider2022.3\\resharper-host\\SourcesCache",
+      "C:\\Users\\DavidAllenArcher\\AppData\\Local\\Symbols\\src"
     ]
   }
 }]]></component>
@@ -261,6 +260,7 @@
       <option name="presentableId" value="Default" />
       <updated>1676595629621</updated>
       <workItem from="1676595636149" duration="365000" />
+      <workItem from="1676659859224" duration="804000" />
     </task>
     <servers />
   </component>

@@ -26,8 +26,8 @@ public:
 	
 	virtual void SetupInputComponent() override;
 	
-	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, DisplayName="OnPlayerPhaseChanged")
-	void ReceiveOnPlayerPhaseChanged(PlayerPhase NewPlayerPhase);
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
+	void OnPlayerPhaseChanged(PlayerPhase NewPlayerPhase);
 	
 	UFUNCTION(BlueprintCallable)
 	void HandleStartGame(int32 StartingPlayerIndex);
@@ -52,12 +52,6 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void PerformPlacePiece(FGameCoordinate DestinationCoordinate, PieceFace ShownFace);
-
-	UFUNCTION(BlueprintCallable)
-	void PerformFlipPiece_Server(FGameCoordinate SourceCoordinate, FGameCoordinate DestinationCoordinate);
-
-	UFUNCTION(BlueprintCallable)
-	void PerformPlacePiece_Server(FGameCoordinate DestinationCoordinate, PieceFace ShownFace);
 	
 	UFUNCTION(BlueprintCallable)
 	void SelectSpace(FGameCoordinate SelectedSpace);
