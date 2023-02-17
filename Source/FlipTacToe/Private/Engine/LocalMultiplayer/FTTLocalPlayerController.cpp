@@ -19,8 +19,8 @@ void AFTTLocalPlayerController::BeginPlay()
 	GameState = static_cast<AFTTNetworkGameState*>(GetWorld()->GetGameState());
 	if (GameState)
 	{
-		GameState->OnStartGame.AddDynamic(this, &AFTTLocalPlayerController::HandleStartGame);
-		GameState->OnActivePlayerSet.AddDynamic(this, &AFTTLocalPlayerController::HandleActivePlayerSet);
+		//GameState->OnStartGame.AddDynamic(this, &AFTTLocalPlayerController::HandleStartGame);
+		//GameState->OnActivePlayerSet.AddDynamic(this, &AFTTLocalPlayerController::HandleActivePlayerSet);
 	}
 }
 
