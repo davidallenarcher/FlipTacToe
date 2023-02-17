@@ -36,7 +36,7 @@ public:
 	void HandleActivePlayerSet(int32 ActivePlayerIndex);
 	
 	UFUNCTION(BlueprintGetter)
-	PlayerPhase GetPlayerPhase();
+	PlayerPhase GetPlayerPhase() const;
 
 	UFUNCTION()
 	void SetPlayerIndex(int32 NewPlayerIndex);

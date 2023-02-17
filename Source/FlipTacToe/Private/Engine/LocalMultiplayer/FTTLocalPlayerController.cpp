@@ -84,7 +84,7 @@ void AFTTLocalPlayerController::SetPlayerPhase(PlayerPhase NewPlayerPhase)
 	}
 }
 
-PlayerPhase AFTTLocalPlayerController::GetPlayerPhase()
+PlayerPhase AFTTLocalPlayerController::GetPlayerPhase() const
 {
 	return CurrentPlayerPhase;
 }
