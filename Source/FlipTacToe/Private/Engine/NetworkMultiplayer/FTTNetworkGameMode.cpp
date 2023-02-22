@@ -29,9 +29,12 @@ void AFTTNetworkGameMode::StartGame() const
 	}
 	AGameStateBase* GameStateBase =
 		UGameplayStatics::GetGameState(GetWorld());
-	AFTTNetworkGameState* FTTNetworkGameState =
-		static_cast<AFTTNetworkGameState*>(GameStateBase);
-	FTTNetworkGameState->StartGame_Multi(0);
+	IFTTGameStateInterface* FTTGameState =
+		Cast<IFTTGameStateInterface>(GameStateBase);
+	if (FTTGameState)
+	{
+		FTTGameState->StartGame(0);
+	}
 }
 
 void AFTTNetworkGameMode::PostLogin(APlayerController* NewPlayer)

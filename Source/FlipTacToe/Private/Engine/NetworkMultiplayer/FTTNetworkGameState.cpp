@@ -26,6 +26,40 @@ void AFTTNetworkGameState::BeginPlay()
 	GameBoard->SetOwner(this);
 }
 
+/** Begin IFTTGameStateInterface Events */
+void AFTTNetworkGameState::StartGame_Implementation(int32 StartingPlayerIndex)
+{
+	StartGame_Multi(StartingPlayerIndex);
+}
+
+void AFTTNetworkGameState::BeginPlayerTurn_Implementation(int32 NewActivePlayerIndex)
+{
+	BeginPlayerTurn_Multi(NewActivePlayerIndex);
+}
+
+void AFTTNetworkGameState::EndPlayerTurn_Implementation()
+{
+	EndPlayerTurn_Server();
+}
+
+AGameBoard* AFTTNetworkGameState::GetGameBoard_Implementation()
+{
+	return GameBoard;
+}
+
+int32 AFTTNetworkGameState::GetActivePlayerIndex_Implementation()
+{
+	return ActivePlayerIndex;
+}
+
+void AFTTNetworkGameState::SetActivePlayerIndex_Implementation(int32 NewActivePlayerIndex)
+{
+	ActivePlayerIndex = NewActivePlayerIndex;
+	OnActivePlayerSet.Broadcast(NewActivePlayerIndex);
+}
+/** End IFTTGameStateInterface Events */
+
+//** Start Network Functions *//
 void AFTTNetworkGameState::StartGame_Multi_Implementation(int32 StartingPlayerIndex)
 {
 	OnStartGame.Broadcast(StartingPlayerIndex);
@@ -40,22 +74,7 @@ void AFTTNetworkGameState::EndPlayerTurn_Server_Implementation()
 {
 	BeginPlayerTurn_Multi((ActivePlayerIndex+1)%2);
 }
-
-AGameBoard* AFTTNetworkGameState::GetGameBoard() const
-{
-	return GameBoard;
-}
-
-int32 AFTTNetworkGameState::GetActivePlayerIndex()
-{
-	return ActivePlayerIndex;
-}
-
-void AFTTNetworkGameState::SetActivePlayerIndex(int32 NewActivePlayerIndex)
-{
-	ActivePlayerIndex = NewActivePlayerIndex;
-	OnActivePlayerSet.Broadcast(NewActivePlayerIndex);
-}
+//** End Network Functions *//
 
 void AFTTNetworkGameState::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
 {

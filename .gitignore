@@ -1,6 +1,9 @@
 # Other artifacts used in the making of this project
 OtherAssets/
 
+# JetBrains Rider
+.idea/
+
 # Visual Studio 2015 user specific files
 .vs/
 

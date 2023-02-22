@@ -133,7 +133,7 @@ void AFTTLocalPlayerController::PerformPlacePiece(FGameCoordinate DestinationCoo
 		if (!GamePiece)
 		{
 			GameState->GetGameBoard()->PlacePiece(DestinationCoordinate, PlayerIndex, ShownFace);
-			GameState->EndPlayerTurn_Server();
+			GameState->EndPlayerTurn();
 		}
 	}
 }

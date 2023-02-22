@@ -159,7 +159,7 @@ void AFTTNetworkPlayerController::PerformPlacePiece_Server_Implementation(FGameC
 		if (!GamePiece)
 		{
 			PerformPlacePiece_Multi(DestinationCoordinate, ShownFace);
-			GameState->EndPlayerTurn_Server();
+			GameState->EndPlayerTurn();
 		}
 	}
 }
