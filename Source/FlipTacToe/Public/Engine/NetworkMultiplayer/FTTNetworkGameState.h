@@ -3,21 +3,16 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Engine/LocalMultiplayer/FTTLocalGameState.h"
 #include "Game/GameBoard.h"
-#include "GameFramework/GameState.h"
 #include "Interfaces/FTTGameStateInterface.h"
 #include "Structs/GameCoordinate.h"
-#include "Structs/GameTriple.h"
 #include "FTTNetworkGameState.generated.h"
 
 DECLARE_LOG_CATEGORY_EXTERN(LogFTTNetworkGameState, Log, All);
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnStartGame, int32, StartingPlayerIndex);
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnActivePlayerSet, int32, NewActivePlayerIndex);
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnEndGame, int32, WinnerPlayerIndex, FGameTriple, Winning);
-
 UCLASS()
-class FLIPTACTOE_API AFTTNetworkGameState : public AGameState, public IFTTGameStateInterface
+class FLIPTACTOE_API AFTTNetworkGameState : public AFTTLocalGameState
 {
 	GENERATED_BODY()
 
@@ -38,32 +33,22 @@ public:
 	FOnEndGame OnEndGame;
 	//** End Delegates *//
 
-	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
-	void StartGame(int32 StartingPlayerIndex);
+	//** Start FTTGameStateInterface methods *//
 	virtual void StartGame_Implementation(int32 StartingPlayerIndex) override;
 
-	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
-	void BeginPlayerTurn(int32 NewActivePlayerIndex);
 	virtual void BeginPlayerTurn_Implementation(int32 NewActivePlayerIndex) override;
 
-	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
-	void EndPlayerTurn();
 	virtual void EndPlayerTurn_Implementation() override;
 
-	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
-	AGameBoard* GetGameBoard();
 	virtual AGameBoard* GetGameBoard_Implementation() override;
 
-	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
-	int32 GetActivePlayerIndex();
 	virtual int32 GetActivePlayerIndex_Implementation() override;
 
-	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
-	void SetActivePlayerIndex(int32 NewActivePlayerIndex);
 	virtual void SetActivePlayerIndex_Implementation(int32 NewActivePlayerIndex) override;
+	//** End FTTGameStateInterface methods *//
 	
-	//** Start Network Functions *//
 private:
+	//** Start Network Functions *//
 	UFUNCTION(BlueprintCallable, NetMulticast, Reliable)
 	void StartGame_Multi(int32 StartingPlayerIndex);
 
@@ -74,14 +59,5 @@ private:
 	void EndPlayerTurn_Server();
 	//** End Network Functions *//
 public:
-	UPROPERTY(BlueprintReadWrite)
-	FGameCoordinate HighlightedCoordinate;
-
-	UPROPERTY(BlueprintReadWrite, VisibleAnywhere)
-	int32 ActivePlayerIndex;
-private:
-	UPROPERTY(Replicated)
-	AGameBoard* GameBoard;
-
 	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 };

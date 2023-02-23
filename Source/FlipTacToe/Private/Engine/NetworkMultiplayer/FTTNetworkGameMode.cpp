@@ -33,7 +33,7 @@ void AFTTNetworkGameMode::StartGame() const
 		Cast<IFTTGameStateInterface>(GameStateBase);
 	if (FTTGameState)
 	{
-		FTTGameState->StartGame(0);
+		FTTGameState->Execute_StartGame(GameStateBase, 0);
 	}
 }
 

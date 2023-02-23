@@ -4,9 +4,14 @@
 
 #include "CoreMinimal.h"
 #include "Structs/GameCoordinate.h"
+#include "Structs/GameTriple.h"
 #include "FTTGameStateInterface.generated.h"
 
 class AGameBoard;
+
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnStartGame, int32, StartingPlayerIndex);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnActivePlayerSet, int32, NewActivePlayerIndex);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnEndGame, int32, WinnerPlayerIndex, FGameTriple, Winning);
 
 UINTERFACE(Blueprintable)
 class FLIPTACTOE_API UFTTGameStateInterface : public UInterface

@@ -26,31 +26,31 @@ void AFTTLocalGameState::BeginPlay()
 	GameBoard->SetOwner(this);
 }
 
-void AFTTLocalGameState::StartGame(int32 StartingPlayerIndex)
+void AFTTLocalGameState::StartGame_Implementation(int32 StartingPlayerIndex)
 {
 }
 
-void AFTTLocalGameState::BeginPlayerTurn(int32 NewActivePlayerIndex)
+void AFTTLocalGameState::BeginPlayerTurn_Implementation(int32 NewActivePlayerIndex)
 {
 	SetActivePlayerIndex(NewActivePlayerIndex);
 }
 
-void AFTTLocalGameState::EndPlayerTurn()
+void AFTTLocalGameState::EndPlayerTurn_Implementation()
 {
 	BeginPlayerTurn((ActivePlayerIndex+1)%2);
 }
 
-AGameBoard* AFTTLocalGameState::GetGameBoard() const
+AGameBoard* AFTTLocalGameState::GetGameBoard_Implementation()
 {
 	return GameBoard;
 }
 
-int32 AFTTLocalGameState::GetActivePlayerIndex()
+int32 AFTTLocalGameState::GetActivePlayerIndex_Implementation()
 {
 	return ActivePlayerIndex;
 }
 
-void AFTTLocalGameState::SetActivePlayerIndex(int32 NewActivePlayerIndex)
+void AFTTLocalGameState::SetActivePlayerIndex_Implementation(int32 NewActivePlayerIndex)
 {
 	ActivePlayerIndex = NewActivePlayerIndex;
 }

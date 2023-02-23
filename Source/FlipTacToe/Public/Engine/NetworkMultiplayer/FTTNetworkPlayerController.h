@@ -6,6 +6,7 @@
 #include "Enums/PlayerPhase.h"
 #include "Enums/PieceFace.h"
 #include "GameFramework/PlayerController.h"
+#include "Interfaces/FTTGameStateInterface.h"
 #include "Structs/GameCoordinate.h"
 #include "FTTNetworkPlayerController.generated.h"
 

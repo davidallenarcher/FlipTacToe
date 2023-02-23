@@ -1,6 +1,8 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "Engine/NetworkMultiplayer/FTTNetworkPlayerController.h"
+
+#include "Interfaces/FTTGameStateInterface.h"
 #include "Engine/NetworkMultiplayer/FTTNetworkGameState.h"
 
 DEFINE_LOG_CATEGORY(LogFTTNetworkPlayerController);
@@ -19,7 +21,7 @@ void AFTTNetworkPlayerController::BeginPlay()
 	UE_LOG(LogFTTNetworkPlayerController, Log, TEXT("PRE--BeginPlay[%p]: NetMode:%d"), this, GetNetMode())
 	Super::BeginPlay();
 	UE_LOG(LogFTTNetworkPlayerController, Log, TEXT("POST--BeginPlay[%p]: NetMode:%d"), this, GetNetMode())
-	GameState = static_cast<AFTTNetworkGameState*>(GetWorld()->GetGameState());
+	GameState = Cast<AFTTNetworkGameState>(GetWorld()->GetGameState());
 	if (GameState)
 	{
 		UE_LOG(LogFTTNetworkPlayerController, Log, TEXT("BeginPlay[%p]: Starting"), this)
